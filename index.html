@@ -9,8 +9,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             background-color: #f4f4f4;
+            color: #333;
         }
         header {
             background-color: #333;
@@ -19,11 +19,14 @@
             font-size: 24px;
         }
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
             background: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
         }
         .project {
             margin: 20px 0;
@@ -31,6 +34,16 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             background: #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+        .project:hover {
+            transform: scale(1.05);
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 5px;
         }
         footer {
             margin-top: 20px;
@@ -38,28 +51,59 @@
             background: #333;
             color: white;
         }
+        .project img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Meu Portfólio de Jogos</h1>
     </header>
+
     <div class="container">
         <h2>Sobre Mim</h2>
         <p>Oi, eu sou Michelle, desenvolvedora de jogos! Aqui estão alguns dos meus projetos.</p>
-        
-        <h2>Meus Projetos</h2>
+
+        <h2>Jogos da Faculdade/Pessoais</h2>
         <div class="project">
             <h3>Jogo Exemplo 1</h3>
             <p>Descrição breve do jogo.</p>
+            <a href="https://itch.io/jogo-exemplo-1" target="_blank">Ver no Itch.io</a>
         </div>
         <div class="project">
             <h3>Jogo Exemplo 2</h3>
             <p>Descrição breve do jogo.</p>
+            <a href="https://itch.io/jogo-exemplo-2" target="_blank">Ver no Itch.io</a>
         </div>
+        <!-- Adicione os outros jogos aqui -->
+
+        <h2>Meus Playables</h2>
+        <div class="project">
+            <h3>Playable Jogo Exemplo 1</h3>
+            <p>Descrição do jogo. Clique para jogar!</p>
+            <iframe src="https://misantiago17.github.io/jogos/space_adventure.html"></iframe>
+        </div>
+        <div class="project">
+            <h3>Playable Jogo Exemplo 2</h3>
+            <p>Descrição do jogo. Clique para jogar!</p>
+            <iframe src="https://misantiago17.github.io/jogos/jogo2.html"></iframe>
+        </div>
+        <!-- Adicione os outros jogos aqui -->
+
+        <h2>Jogos Pontuais</h2>
+        <div class="project">
+            <h3>Jogo Publicado - Space Battle</h3>
+            <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ. <a href="https://storelink.com" target="_blank">Ver na loja</a></p>
+            <img src="https://example.com/imagem-do-jogo.jpg" alt="Imagem do jogo">
+        </div>
+        <!-- Adicione mais jogos pontuais aqui -->
+
     </div>
+
     <footer>
-        <p>Entre em contato: <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+        <p>Entre em contato: <a href="https://linkedin.com/in/michelle" target="_blank">LinkedIn</a> | <a href="https://github.com/misantiago17" target="_blank">GitHub</a></p>
     </footer>
 </body>
 </html>
