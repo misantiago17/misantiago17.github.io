@@ -28,6 +28,11 @@
         h2 {
             color: #333;
         }
+        .section-title {
+            margin-top: 40px;
+            font-size: 22px;
+            color: #444;
+        }
         .project {
             margin: 20px 0;
             padding: 10px;
@@ -55,6 +60,56 @@
             max-width: 100%;
             border-radius: 5px;
         }
+        .list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .list li {
+            margin-bottom: 10px;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .skills div {
+            width: 30%;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .contact-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .contact-form button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #444;
+        }
+        .social-links a {
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -63,8 +118,78 @@
     </header>
 
     <div class="container">
+        <!-- Seção de Objetivo Profissional -->
+        <h2>Objetivo Profissional</h2>
+        <p>Sou uma desenvolvedora de jogos com foco em criar experiências imersivas e de alta qualidade. Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
+
+        <!-- Seção de Sobre Mim -->
         <h2>Sobre Mim</h2>
-        <p>Oi, eu sou Michelle, desenvolvedora de jogos! Aqui estão alguns dos meus projetos.</p>
+        <p>Oi, eu sou Michelle, desenvolvedora de jogos com experiência em diversas plataformas e tecnologias. Aqui estão alguns dos meus projetos e um pouco sobre minha trajetória profissional.</p>
+
+        <!-- Seção de Experiência Profissional -->
+        <div class="section-title">
+            <h2>Experiência Profissional</h2>
+        </div>
+        <ul class="list">
+            <li><strong>Desenvolvedora de Jogos - Fortis</strong> (2022 - presente): Trabalhei no projeto EpicBattle, entregando resultados no prazo e superando as expectativas, além de colaborar com times multidisciplinares para a criação de jogos imersivos.</li>
+            <li><strong>Desenvolvedora Júnior - PIP</strong> (2021 - 2022): Colaborei na equipe de units, melhorando minha comunicação e resolvendo desafios técnicos no desenvolvimento de jogos.</li>
+            <!-- Adicione mais experiências aqui -->
+        </ul>
+
+        <!-- Seção de Formação -->
+        <div class="section-title">
+            <h2>Formação</h2>
+        </div>
+        <ul class="list">
+            <li><strong>Graduação em Ciência da Computação</strong> - Universidade XYZ (2019 - 2023)</li>
+            <li><strong>Certificação em Desenvolvimento de Jogos</strong> - Curso ABC (2022)</li>
+            <!-- Adicione mais formações ou certificações aqui -->
+        </ul>
+
+        <!-- Seção de Idiomas -->
+        <div class="section-title">
+            <h2>Fluência em Idiomas</h2>
+        </div>
+        <ul class="list">
+            <li><strong>Português</strong> - Nativo</li>
+            <li><strong>Inglês</strong> - Avançado</li>
+            <!-- Adicione mais idiomas ou detalhes aqui -->
+        </ul>
+
+        <!-- Seção de Habilidades Técnicas -->
+        <div class="section-title">
+            <h2>Habilidades Técnicas</h2>
+        </div>
+        <div class="skills">
+            <div>
+                <h3>Ferramentas</h3>
+                <ul>
+                    <li>Unreal Engine</li>
+                    <li>Unity</li>
+                    <li>Visual Studio</li>
+                    <li>Git/GitHub</li>
+                    <li>Perforce</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Linguagens</h3>
+                <ul>
+                    <li>C#</li>
+                    <li>C++</li>
+                    <li>Blueprints (Unreal Engine)</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Plataformas</h3>
+                <ul>
+                    <li>PC</li>
+                    <li>Console (PlayStation, Xbox)</li>
+                    <li>Mobile (iOS, Android)</li>
+                    <li>Web (HTML5)</li>
+                </ul>
+            </div>
+        </div>
 
         <h2>Jogos da Faculdade/Pessoais</h2>
         <div class="project">
@@ -99,6 +224,52 @@
             <img src="https://example.com/imagem-do-jogo.jpg" alt="Imagem do jogo">
         </div>
         <!-- Adicione mais jogos pontuais aqui -->
+
+        <!-- Seção de Certificados e Prêmios -->
+        <div class="section-title">
+            <h2>Certificados e Prêmios</h2>
+        </div>
+        <ul class="list">
+            <li><strong>Certificado de Desenvolvimento de Jogos</strong> - Curso XYZ (2022)</li>
+            <li><strong>Prêmio de Melhor Jogo Independente</strong> - Evento ABC (2023)</li>
+            <!-- Adicione mais certificados ou prêmios aqui -->
+        </ul>
+
+        <!-- Seção de Contato -->
+        <div class="section-title">
+            <h2>Contato</h2>
+        </div>
+        <div class="contact-form">
+            <h3>Entre em Contato</h3>
+            <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <!-- Seção de Links para Currículo e Redes Sociais -->
+        <div class="section-title">
+            <h2>Links Úteis</h2>
+        </div>
+        <ul class="list">
+            <li><strong>Currículo:</strong> <a href="link-do-seu-curriculo.pdf" target="_blank">Baixar Currículo</a></li>
+            <li><strong>Redes Sociais:</strong>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/michelle" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/misantiago17" target="_blank">GitHub</a>
+                    <a href="https://twitter.com/michelle" target="_blank">Twitter</a>
+                    <!-- Adicione outros links sociais se necessário -->
+                </div>
+            </li>
+        </ul>
 
     </div>
 
