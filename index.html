@@ -7,16 +7,59 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            padding: 20px;
+            background-color: #f4f4f4;
         }
-        h1 {
-            color: #333;
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .project {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fff;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #333;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Bem-vindo ao meu portfólio!</h1>
-    <p>Aqui você encontrará meus jogos e playables.</p>
+    <header>
+        <h1>Meu Portfólio de Jogos</h1>
+    </header>
+    <div class="container">
+        <h2>Sobre Mim</h2>
+        <p>Oi, eu sou Michelle, desenvolvedora de jogos! Aqui estão alguns dos meus projetos.</p>
+        
+        <h2>Meus Projetos</h2>
+        <div class="project">
+            <h3>Jogo Exemplo 1</h3>
+            <p>Descrição breve do jogo.</p>
+        </div>
+        <div class="project">
+            <h3>Jogo Exemplo 2</h3>
+            <p>Descrição breve do jogo.</p>
+        </div>
+    </div>
+    <footer>
+        <p>Entre em contato: <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+    </footer>
 </body>
 </html>
