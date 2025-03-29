@@ -5,110 +5,348 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Portfólio</title>
     <style>
+        /* Cores da paleta atualizada */
+        :root {
+            --verde-escuro: #3a4f41;
+            --rosa-claro: #d9b8c4;
+            --rosa-escuro: #b6697a;
+            --marrom-medio: #8e4a49;
+            --verde-suave: #a4b494;
+            --laranja: #dc851f;        /* Laranja original para detalhes sutis */
+            --laranja-suave: #d9956e;  
+            --fundo-pagina: #f7f1f3;   /* Fundo off-white com tom rosado suave */
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--fundo-pagina);
+            color: var(--verde-escuro);
+            line-height: 1.6;
         }
+
         header {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            font-size: 24px;
+            background-color: var(--verde-escuro);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid var(--laranja);  /* Detalhe sutil de laranja */
         }
+
         .container {
             max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            border-top: 4px solid var(--rosa-escuro);
         }
+
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
         h2 {
-            color: #333;
+            color: var(--verde-escuro);
+            border-bottom: 2px solid var(--rosa-escuro);
+            padding-bottom: 8px;
         }
-        .section-title {
-            margin-top: 40px;
-            font-size: 22px;
-            color: #444;
+
+        /* Títulos dentro dos painéis verde escuro */
+        .panel h2 {
+            color: #fff;  /* Melhor contraste para títulos em fundo escuro */
+            border-bottom: 2px solid var(--laranja);  /* Detalhe laranja */
+            margin-top: 0;
+            padding-bottom: 10px;
         }
+
+        .panel h3 {
+            color: #fff;  /* Melhor contraste */
+        }
+
+        /* Estilo para os painéis */
+        .panel {
+            background-color: var(--verde-escuro);
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border-left: 3px solid var(--laranja);  /* Detalhe laranja sutil */
+        }
+
+        /* Projetos */
         .project {
             margin: 20px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fff;
-            transition: transform 0.3s ease-in-out;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: var(--rosa-claro);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .project:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-left: 3px solid var(--laranja);  /* Detalhe laranja ao passar o mouse */
         }
+
+        .project:nth-child(even) {
+            background-color: var(--verde-suave);
+        }
+
+        .project h3 {
+            color: var(--verde-escuro);
+            margin-top: 0;
+        }
+
+        .project h3:after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--laranja);  /* Detalhe laranja após títulos de projetos */
+            margin-top: 5px;
+        }
+
         iframe {
             width: 100%;
             height: 300px;
             border: none;
             border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
+
         footer {
-            margin-top: 20px;
-            padding: 10px;
-            background: #333;
-            color: white;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--verde-escuro);
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--laranja);  /* Detalhe laranja */
         }
+
         .project img {
             max-width: 100%;
             border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
+
+        /* Listas */
         .list {
             list-style-type: none;
             padding-left: 0;
         }
+
         .list li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
         }
+
+        .list li:before {
+            content: "•";
+            color: var(--laranja);  /* Detalhe laranja nos marcadores */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Skills */
         .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .skills div {
-            width: 30%;
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--laranja);  /* Detalhe laranja */
         }
+
+        .skills ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skills li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skills li:before {
+            content: "→";
+            color: var(--laranja);  /* Detalhe laranja */
+            position: absolute;
+            left: 0;
+        }
+
+        /* Formulário de Contato */
         .contact-form {
             margin-top: 20px;
-            padding: 20px;
-            background: #f4f4f4;
-            border-radius: 5px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--rosa-claro) 0%, var(--rosa-escuro) 100%);
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
         }
+
+        .contact-form h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .contact-form h3:after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--laranja);  /* Detalhe laranja */
+            margin-top: 5px;
+        }
+
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            font-family: inherit;
+            background-color: rgba(255, 255, 255, 0.9);
         }
+
         .contact-form button {
-            background-color: #333;
-            color: white;
+            background-color: var(--verde-escuro);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-bottom: 2px solid var(--laranja);  /* Detalhe laranja */
+        }
+
+        .contact-form button:hover {
+            background-color: var(--marrom-medio);
+        }
+
+        /* Links e Botões */
+        a {
+            color: var(--rosa-escuro);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--laranja);  /* Laranja ao passar o mouse sobre links */
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: var(--rosa-escuro);
+            color: #fff;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-bottom: 2px solid var(--laranja);  /* Detalhe laranja */
         }
-        .contact-form button:hover {
-            background-color: #444;
+
+        button:hover {
+            background-color: var(--marrom-medio);
         }
+
+        /* Redes sociais */
+        .social-links {
+            margin-top: 30px;
+        }
+
         .social-links a {
+            display: inline-block;
             margin-right: 15px;
-            color: #333;
+            color: #fff;
             text-decoration: none;
+            padding: 8px 15px;
+            background-color: var(--rosa-escuro);
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
+
         .social-links a:hover {
-            text-decoration: underline;
+            background-color: var(--laranja);  /* Laranja ao passar o mouse */
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Seção de estatísticas */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            padding: 15px;
+            background-color: var(--verde-suave);
+            border-radius: 8px;
+            margin: 0 10px 10px 0;
+        }
+
+        .stat-item:nth-child(2) {
+            background-color: var(--rosa-claro);
+        }
+
+        .stat-item:nth-child(3) {
+            background-color: var(--rosa-escuro);
+            color: #fff;
+            border-bottom: 3px solid var(--laranja);  /* Detalhe laranja */
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--verde-escuro);
+        }
+
+        .stat-item:nth-child(3) .stat-number {
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 14px;
+        }
+
+        /* Destacando alguns itens nos painéis para melhor contraste */
+        .panel strong {
+            color: var(--laranja);  /* Detalhe laranja para texto em destaque */
+        }
+
+        /* Adicionando um fundo sutil para os títulos principais */
+        h2 {
+            background-color: rgba(182, 105, 122, 0.05);
+            padding: 8px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -122,72 +360,85 @@
         <h2>Objetivo Profissional</h2>
         <p>Sou uma desenvolvedora de jogos com foco em criar experiências imersivas e de alta qualidade. Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
 
+        <!-- Estatísticas -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">300+</div>
+                <div class="stat-label">Cursos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Expert Mentors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Horas de Conteúdo</div>
+            </div>
+        </div>
+
         <!-- Seção de Sobre Mim -->
         <h2>Sobre Mim</h2>
         <p>Oi, eu sou Michelle, desenvolvedora de jogos com experiência em diversas plataformas e tecnologias. Aqui estão alguns dos meus projetos e um pouco sobre minha trajetória profissional.</p>
 
         <!-- Seção de Experiência Profissional -->
-        <div class="section-title">
+        <div class="panel">
             <h2>Experiência Profissional</h2>
+            <ul class="list">
+                <li><strong>Desenvolvedora de Jogos - Fortis</strong> (2022 - presente): Trabalhei no projeto EpicBattle, entregando resultados no prazo e superando as expectativas, além de colaborar com times multidisciplinares para a criação de jogos imersivos.</li>
+                <li><strong>Desenvolvedora Júnior - PIP</strong> (2021 - 2022): Colaborei na equipe de units, melhorando minha comunicação e resolvendo desafios técnicos no desenvolvimento de jogos.</li>
+            </ul>
         </div>
-        <ul class="list">
-            <li><strong>Desenvolvedora de Jogos - Fortis</strong> (2022 - presente): Trabalhei no projeto EpicBattle, entregando resultados no prazo e superando as expectativas, além de colaborar com times multidisciplinares para a criação de jogos imersivos.</li>
-            <li><strong>Desenvolvedora Júnior - PIP</strong> (2021 - 2022): Colaborei na equipe de units, melhorando minha comunicação e resolvendo desafios técnicos no desenvolvimento de jogos.</li>
-            <!-- Adicione mais experiências aqui -->
-        </ul>
 
         <!-- Seção de Formação -->
-        <div class="section-title">
+        <div class="panel">
             <h2>Formação</h2>
+            <ul class="list">
+                <li><strong>Graduação em Ciência da Computação</strong> - Universidade XYZ (2019 - 2023)</li>
+                <li><strong>Certificação em Desenvolvimento de Jogos</strong> - Curso ABC (2022)</li>
+            </ul>
         </div>
-        <ul class="list">
-            <li><strong>Graduação em Ciência da Computação</strong> - Universidade XYZ (2019 - 2023)</li>
-            <li><strong>Certificação em Desenvolvimento de Jogos</strong> - Curso ABC (2022)</li>
-            <!-- Adicione mais formações ou certificações aqui -->
-        </ul>
 
         <!-- Seção de Idiomas -->
-        <div class="section-title">
+        <div class="panel">
             <h2>Fluência em Idiomas</h2>
+            <ul class="list">
+                <li><strong>Português</strong> - Nativo</li>
+                <li><strong>Inglês</strong> - Avançado</li>
+            </ul>
         </div>
-        <ul class="list">
-            <li><strong>Português</strong> - Nativo</li>
-            <li><strong>Inglês</strong> - Avançado</li>
-            <!-- Adicione mais idiomas ou detalhes aqui -->
-        </ul>
 
         <!-- Seção de Habilidades Técnicas -->
-        <div class="section-title">
+        <div class="panel">
             <h2>Habilidades Técnicas</h2>
-        </div>
-        <div class="skills">
-            <div>
-                <h3>Ferramentas</h3>
-                <ul>
-                    <li>Unreal Engine</li>
-                    <li>Unity</li>
-                    <li>Visual Studio</li>
-                    <li>Git/GitHub</li>
-                    <li>Perforce</li>
-                </ul>
-            </div>
-            <div>
-                <h3>Linguagens</h3>
-                <ul>
-                    <li>C#</li>
-                    <li>C++</li>
-                    <li>Blueprints (Unreal Engine)</li>
-                    <li>JavaScript</li>
-                </ul>
-            </div>
-            <div>
-                <h3>Plataformas</h3>
-                <ul>
-                    <li>PC</li>
-                    <li>Console (PlayStation, Xbox)</li>
-                    <li>Mobile (iOS, Android)</li>
-                    <li>Web (HTML5)</li>
-                </ul>
+            <div class="skills">
+                <div>
+                    <h3>Ferramentas</h3>
+                    <ul>
+                        <li>Unreal Engine</li>
+                        <li>Unity</li>
+                        <li>Visual Studio</li>
+                        <li>Git/GitHub</li>
+                        <li>Perforce</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Linguagens</h3>
+                    <ul>
+                        <li>C#</li>
+                        <li>C++</li>
+                        <li>Blueprints (Unreal Engine)</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Plataformas</h3>
+                    <ul>
+                        <li>PC</li>
+                        <li>Console (PlayStation, Xbox)</li>
+                        <li>Mobile (iOS, Android)</li>
+                        <li>Web (HTML5)</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -202,7 +453,6 @@
             <p>Descrição breve do jogo.</p>
             <a href="https://itch.io/jogo-exemplo-2" target="_blank">Ver no Itch.io</a>
         </div>
-        <!-- Adicione os outros jogos aqui -->
 
         <h2>Meus Playables</h2>
         <div class="project">
@@ -215,7 +465,6 @@
             <p>Descrição do jogo. Clique para jogar!</p>
             <iframe src="https://misantiago17.github.io/jogos/jogo2.html"></iframe>
         </div>
-        <!-- Adicione os outros jogos aqui -->
 
         <h2>Jogos Pontuais</h2>
         <div class="project">
@@ -223,58 +472,35 @@
             <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ. <a href="https://storelink.com" target="_blank">Ver na loja</a></p>
             <img src="https://example.com/imagem-do-jogo.jpg" alt="Imagem do jogo">
         </div>
-        <!-- Adicione mais jogos pontuais aqui -->
 
-        <!-- Seção de Certificados e Prêmios -->
-        <div class="section-title">
+        <div class="panel">
             <h2>Certificados e Prêmios</h2>
+            <ul class="list">
+                <li>Prêmio de Melhor Jogo Independente - GameDev 2023</li>
+                <li>Certificação em Unreal Engine - Coursera</li>
+            </ul>
         </div>
-        <ul class="list">
-            <li><strong>Certificado de Desenvolvimento de Jogos</strong> - Curso XYZ (2022)</li>
-            <li><strong>Prêmio de Melhor Jogo Independente</strong> - Evento ABC (2023)</li>
-            <!-- Adicione mais certificados ou prêmios aqui -->
-        </ul>
 
         <!-- Seção de Contato -->
-        <div class="section-title">
-            <h2>Contato</h2>
-        </div>
         <div class="contact-form">
             <h3>Entre em Contato</h3>
-            <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Mensagem:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                
+            <form action="#">
+                <input type="text" placeholder="Seu nome" required>
+                <input type="email" placeholder="Seu email" required>
+                <textarea placeholder="Sua mensagem" rows="5" required></textarea>
                 <button type="submit">Enviar</button>
             </form>
         </div>
 
-        <!-- Seção de Links para Currículo e Redes Sociais -->
-        <div class="section-title">
-            <h2>Links Úteis</h2>
+        <div class="social-links">
+            <h3>Redes Sociais</h3>
+            <a href="https://www.linkedin.com/in/seulinkedin" target="_blank">LinkedIn</a>
+            <a href="https://github.com/seuusername" target="_blank">GitHub</a>
         </div>
-        <ul class="list">
-            <li><strong>Currículo:</strong> <a href="link-do-seu-curriculo.pdf" target="_blank">Baixar Currículo</a></li>
-            <li><strong>Redes Sociais:</strong>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/michelle" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/misantiago17" target="_blank">GitHub</a>
-                    <a href="https://twitter.com/michelle" target="_blank">Twitter</a>
-                    <!-- Adicione outros links sociais se necessário -->
-                </div>
-            </li>
-        </ul>
-
     </div>
 
     <footer>
-        <p>Entre em contato: <a href="https://linkedin.com/in/michelle" target="_blank">LinkedIn</a> | <a href="https://github.com/misantiago17" target="_blank">GitHub</a></p>
+        <p>&copy; 2025 Michelle Santiago - Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
