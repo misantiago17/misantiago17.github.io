@@ -367,6 +367,48 @@ h2#sobre-mim {
     box-shadow: 0 10px 30px var(--sombra);
 }
 
+/* Sobre mim com foto de perfil */
+.sobre-mim-container {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.profile-image {
+    flex: 0 0 380px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 15px 40px var(--sombra);
+    border: 8px solid white;
+    transition: all 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px var(--sombra-destacada);
+    border-color: var(--amarelo);
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.profile-text p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--texto-principal);
+}
+
 /* Painéis em estilo moderno */
 .panel {
     background-color: var(--fundo-container);
@@ -1020,6 +1062,12 @@ footer p {
     .social-links a i {
         font-size: 1.2rem;
     }
+    
+    .profile-image {
+        flex: 0 0 280px;
+        width: 280px;
+        height: 280px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1038,6 +1086,12 @@ footer p {
     .nav-main {
         display: none;
     }
+    
+    .profile-image {
+        flex: 0 0 220px;
+        width: 220px;
+        height: 220px;
+    }
 }
 
 /* Configuração específica para a seção de Jogos Pontuais */
@@ -1049,13 +1103,21 @@ footer p {
 .project-full-width {
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 30px;
+    grid-template-columns: 250px 1fr 200px;
+    grid-template-areas: 
+        "titulo descricao imagem"
+        "titulo botao imagem";
+    gap: 20px;
     align-items: center;
     padding: 40px;
     border-left: none;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    background-color: var(--fundo-container);
+    border-radius: 16px;
+    box-shadow: 0 15px 30px var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
 }
 
 .project-full-width::before {
@@ -1071,71 +1133,104 @@ footer p {
 .project-full-width h3 {
     font-size: 2rem;
     color: var(--laranja-vivo);
-    margin: 0;
-    grid-column: 1;
-    white-space: nowrap;
-}
-
-.project-full-width h3:after {
-    display: none;
+    margin: 0 0 15px 0;
+    grid-area: titulo;
+    white-space: normal;
+    line-height: 1.2;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 .project-full-width p {
-    grid-column: 2;
+    grid-area: descricao;
     text-align: left;
-    margin: 0;
-    padding: 0 20px;
+    margin: 0 0 20px 0;
+    padding-right: 20px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: var(--texto-secundario);
 }
 
 .project-full-width img {
-    grid-column: 3;
-    width: 150px;
-    height: 150px;
+    grid-area: imagem;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.project-full-width a {
-    font-weight: bold;
-    color: var(--laranja-vivo);
-    text-decoration: underline;
-    transition: all 0.3s ease;
-    display: inline;
-    padding: 0;
-    margin: 0;
-    background: none;
-    border: none;
-}
-
-.project-full-width a:hover {
-    color: var(--amarelo);
-    background: none;
-    transform: none;
+.project-full-width .store-button {
+    grid-area: botao;
+    justify-self: start;
+    margin-top: 5px;
+    width: auto;
+    padding: 14px 30px;
+    font-size: 1.15rem;
+    font-weight: 700;
 }
 
 /* Responsividade para telas menores */
+@media (max-width: 992px) {
+    .project-full-width {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "titulo titulo"
+            "descricao descricao"
+            "botao imagem";
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .project-full-width h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .project-full-width p {
+        padding-right: 0;
+        margin-bottom: 25px;
+    }
+    
+    .project-full-width img {
+        width: 150px;
+        height: 150px;
+        justify-self: end;
+    }
+}
+
 @media (max-width: 768px) {
     .project-full-width {
         grid-template-columns: 1fr;
+        grid-template-areas: 
+            "titulo"
+            "descricao"
+            "botao"
+            "imagem";
         text-align: center;
         padding: 30px;
     }
     
     .project-full-width h3 {
-        grid-column: 1;
-        margin-bottom: 15px;
+        text-align: center;
     }
     
     .project-full-width p {
-        grid-column: 1;
         text-align: center;
-        margin-bottom: 20px;
         padding: 0;
     }
     
     .project-full-width img {
-        grid-column: 1;
-        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+        margin: 20px auto;
+        justify-self: center;
+    }
+    
+    .project-full-width .store-button {
+        justify-self: center;
+        margin: 10px auto 20px;
     }
 }
 
@@ -1321,5 +1416,109 @@ footer p {
     .game-indicator {
         width: 8px;
         height: 8px;
+    }
+}
+
+/* Responsividade para a seção Sobre Mim */
+@media (max-width: 768px) {
+    .sobre-mim-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .profile-image {
+        flex: 0 0 auto;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .profile-text p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Botão de download do currículo */
+.download-cv-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(to right, var(--laranja), var(--laranja-vivo));
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(240, 89, 19, 0.2);
+    border: none;
+}
+
+.download-cv-btn i {
+    margin-right: 8px;
+}
+
+.download-cv-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(240, 89, 19, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* Media query para o botão de download em telas menores */
+@media (max-width: 768px) {
+    .download-cv-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Botão para loja de jogos */
+.store-button {
+    display: inline-block;
+    padding: 15px 28px;
+    margin: 15px 0;
+    background: #ff7800; /* Cor sólida mais escura */
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(240, 89, 19, 0.3);
+    border: 2px solid #ffffff;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.store-button:before {
+    content: "\f07a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Importante para que o ícone apareça corretamente */
+    margin-right: 12px;
+}
+
+.store-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(240, 89, 19, 0.4);
+    background: #e86800; /* Mais escuro no hover */
+    color: white;
+    text-decoration: none;
+}
+
+.project-full-width .store-button {
+    grid-area: botao;
+    justify-self: start;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .project-full-width .store-button {
+        grid-column: 1;
+        justify-self: center;
+        margin: 15px auto;
+        padding: 16px 30px;
+        font-size: 1.3rem;
     }
 } 

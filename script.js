@@ -46,7 +46,23 @@ document.querySelectorAll('.nav-main a').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-            const offsetTop = targetElement.offsetTop - navHeight;
+            // Offset personalizado para cada tipo de seção para melhor posicionamento
+            let offsetAdjust = 200; // Aumentando o valor padrão para outras seções
+            
+            // Ajusta o offset de acordo com o tipo de elemento ou ID específico
+            if (targetId === '#sobre-mim') {
+                offsetAdjust = 400; // Valor exato solicitado para Sobre Mim
+            } else if (targetId === '#habilidades') {
+                offsetAdjust = 250;
+            } else if (targetId === '#jogos-pontuais') {
+                offsetAdjust = 250;
+            } else if (targetId === '#contato') {
+                offsetAdjust = 200; // Mantendo o valor que já estava bom
+            } else {
+                offsetAdjust = 200; // Valor para outras seções
+            }
+            
+            const offsetTop = targetElement.offsetTop - navHeight + offsetAdjust;
             
             window.scrollTo({
                 top: offsetTop,
@@ -58,7 +74,7 @@ document.querySelectorAll('.nav-main a').forEach(anchor => {
 
 // Função que destaca o link da navegação correspondente à seção visível
 function highlightNavigation() {
-    const sections = document.querySelectorAll('section, h2[id], .panel[id], .contact-form[id]');
+    const sections = document.querySelectorAll('section[id], div[id="habilidades"], h2[id="jogos-pontuais"], h2[id="playables"], .contact-form[id]');
     const navLinks = document.querySelectorAll('.nav-main a');
     const scrollPosition = window.scrollY + nav.offsetHeight + 50; // Ajuste para considerar a navegação fixa
     
@@ -74,6 +90,11 @@ function highlightNavigation() {
             }
         }
     });
+    
+    // Trata casos especiais de seções que não têm link direto na navegação
+    if (currentSection === 'playables') {
+        currentSection = 'jogos-pontuais'; // Associa os playables à seção de projetos
+    }
     
     navLinks.forEach(link => {
         link.classList.remove('active');
