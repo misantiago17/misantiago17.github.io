@@ -5,16 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Portfólio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Meu Portfólio de Jogos</h1>
+        <p class="header-subtitle">Desenvolvendo experiências imersivas e criativas no mundo dos jogos digitais</p>
     </header>
 
+    <!-- Navegação principal abaixo do header -->
+    <nav class="nav-main">
+        <ul>
+            <li><a href="#objetivo" class="active">Objetivo</a></li>
+            <li><a href="#sobre-mim">Sobre Mim</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Espaçador para quando a navegação ficar fixa -->
+    <div class="nav-spacer"></div>
+
     <div class="container">
+        <!-- Elementos decorativos -->
+        <div class="geometric-accent accent-1"></div>
+        <div class="geometric-accent accent-2"></div>
+        <div class="geometric-accent accent-3"></div>
+
         <!-- Seção de Objetivo Profissional -->
-        <h2>Objetivo Profissional</h2>
-        <p>Sou uma desenvolvedora de jogos com foco em criar experiências imersivas e de alta qualidade. Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
+        <section class="intro-section">
+            <h2 id="objetivo">Objetivo Profissional</h2>
+            <p>Sou uma desenvolvedora de jogos com foco em criar experiências imersivas e de alta qualidade. Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
+        </section>
 
         <!-- Estatísticas -->
         <div class="stats">
@@ -150,8 +173,20 @@
 
         <div class="social-links">
             <h3>Redes Sociais</h3>
-            <a href="https://www.linkedin.com/in/seulinkedin" target="_blank">LinkedIn</a>
-            <a href="https://github.com/seuusername" target="_blank">GitHub</a>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/seulinkedin" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/seuusername" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/seuinstagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/seutwitter" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
         </div>
     </div>
 
