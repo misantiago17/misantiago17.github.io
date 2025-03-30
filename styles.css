@@ -42,7 +42,7 @@ body {
     background: var(--verde);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 12px 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     display: block;
 }
 
@@ -89,7 +89,7 @@ body {
 /* Adiciona um espaçador quando a navegação ficar fixa */
 .nav-spacer {
     display: none;
-    height: 51px; /* Altura da navegação + padding */
+    height: 45px; /* Altura reduzida */
 }
 
 .nav-spacer.active {
@@ -144,11 +144,11 @@ header h1 {
     z-index: 1;
 }
 
-/* Container principal */
+/* Container principal com espaçamento reduzido no topo */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 40px;
+    padding: 20px 40px 80px; /* Reduzido de 40px para 20px no topo */
     background: var(--fundo-container);
     position: relative;
 }
@@ -170,10 +170,10 @@ header h1 {
     pointer-events: none;
 }
 
-/* Apresentação inicial em grande destaque */
+/* Apresentação inicial com padding reduzido */
 .intro-section {
     position: relative;
-    padding: 80px 0 40px;
+    padding: 0 0 40px; /* Removido padding no topo */
     margin-bottom: 40px;
 }
 
@@ -187,6 +187,13 @@ header h1 {
     height: 4px;
     background: var(--laranja);
     border-radius: 2px;
+}
+
+/* Título de Objetivo Profissional com margem reduzida */
+h2#objetivo, .intro-section h2 {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 20px;
 }
 
 .container > h2:first-of-type {
