@@ -512,16 +512,19 @@ h2#sobre-mim {
     font-size: 1.2rem;
 }
 
-/* Projetos em grid portfolio */
+/* Grid para projetos */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 40px;
-    margin: 50px 0;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas de largura igual */
+    gap: 30px; /* Espaçamento entre os itens do grid */
+    margin-bottom: 50px;
 }
 
+/* Estilização para projetos em formato padrão (horizontal) */
 .project {
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
     background-color: var(--fundo-container);
     padding: 30px;
     border-radius: 10px;
@@ -532,16 +535,10 @@ h2#sobre-mim {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--sombra-destacada);
-    border-left: 5px solid var(--laranja-vivo);
-}
-
 .project h3 {
     color: var(--laranja-vivo);
     font-size: 1.6rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
 }
 
@@ -549,16 +546,17 @@ h2#sobre-mim {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -8px;
-    width: 50px;
+    bottom: -10px;
+    width: 80px;
     height: 3px;
     background-color: var(--amarelo);
 }
 
 .project p {
     color: var(--texto-secundario);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.6;
+    flex-grow: 1;
 }
 
 .project a {
@@ -566,14 +564,55 @@ h2#sobre-mim {
     text-decoration: none;
     display: inline-block;
     font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--laranja);
     transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
+    align-self: flex-start;
+}
+
+/* Estilização específica para projetos em formato de coluna vertical */
+.project-vertical {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.project-vertical h3:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.project-vertical p {
+    text-align: center;
+}
+
+.project-vertical a {
+    margin: 0 auto;
+    display: block;
 }
 
 .project a:hover {
-    color: var(--laranja);
-    border-bottom: 2px solid var(--laranja);
+    color: white;
+    background-color: var(--laranja);
+    border-color: var(--laranja-vivo);
+    transform: translateY(-3px);
     text-decoration: none;
+}
+
+.project iframe, 
+.project img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px 0 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px var(--sombra-destacada);
+    border-left: 5px solid var(--laranja-vivo);
 }
 
 /* Para projetos grandes com iframe */
@@ -921,7 +960,7 @@ footer p {
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
     }
     
     .geometric-accent {
@@ -961,5 +1000,104 @@ footer p {
     
     .nav-main {
         display: none;
+    }
+}
+
+/* Configuração específica para a seção de Jogos Pontuais */
+.jogos-pontuais {
+    grid-template-columns: 1fr; /* Uma única coluna que ocupa todo o espaço */
+    max-width: 100%;
+}
+
+.project-full-width {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    align-items: center;
+    padding: 40px;
+    border-left: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-full-width::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--laranja), var(--laranja-vivo));
+}
+
+.project-full-width h3 {
+    font-size: 2rem;
+    color: var(--laranja-vivo);
+    margin: 0;
+    grid-column: 1;
+    white-space: nowrap;
+}
+
+.project-full-width h3:after {
+    display: none;
+}
+
+.project-full-width p {
+    grid-column: 2;
+    text-align: left;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.project-full-width img {
+    grid-column: 3;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0;
+}
+
+.project-full-width a {
+    font-weight: bold;
+    color: var(--laranja-vivo);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+}
+
+.project-full-width a:hover {
+    color: var(--amarelo);
+    background: none;
+    transform: none;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .project-full-width {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 30px;
+    }
+    
+    .project-full-width h3 {
+        grid-column: 1;
+        margin-bottom: 15px;
+    }
+    
+    .project-full-width p {
+        grid-column: 1;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    
+    .project-full-width img {
+        grid-column: 1;
+        margin: 0 auto;
     }
 } 
