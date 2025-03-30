@@ -577,20 +577,57 @@ h2#sobre-mim {
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 30px 30px 30px 30px;
+    transition: transform 0.3s ease;
+}
+
+.project-vertical:hover {
+    transform: translateY(-10px);
+}
+
+.project-vertical h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--laranja-vivo);
+    font-size: 1.6rem;
+    position: relative;
+    text-align: center;
 }
 
 .project-vertical h3:after {
+    content: '';
+    position: absolute;
     left: 50%;
+    bottom: -10px;
+    width: 80px;
+    height: 3px;
+    background-color: var(--amarelo);
     transform: translateX(-50%);
 }
 
 .project-vertical p {
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .project-vertical a {
     margin: 0 auto;
     display: block;
+}
+
+.game-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-vertical:hover .game-thumbnail {
+    transform: scale(1.03);
 }
 
 .project a:hover {
@@ -1099,5 +1136,190 @@ footer p {
     .project-full-width img {
         grid-column: 1;
         margin: 0 auto;
+    }
+}
+
+/* Separador decorativo entre seções */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto 80px;
+    max-width: 800px;
+}
+
+.divider-line {
+    height: 3px;
+    flex-grow: 1;
+    background: linear-gradient(to right, transparent, var(--laranja), var(--laranja-vivo), transparent);
+    border-radius: 3px;
+}
+
+.divider-icon {
+    padding: 0 25px;
+    color: var(--laranja-vivo);
+    font-size: 2rem;
+    transform: translateY(2px);
+}
+
+.divider-icon i {
+    background: linear-gradient(to right, var(--laranja), var(--laranja-vivo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+/* Estilos para a seção de Playables */
+.playables-intro {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: var(--texto-secundario);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Área de exibição do jogo */
+.game-display-container {
+    max-width: 1000px;
+    margin: 0 auto 20px;
+}
+
+.game-display-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px var(--sombra);
+    background-color: var(--fundo-container);
+}
+
+#game-display {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    background-color: #222;
+}
+
+#game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.game-info {
+    padding: 20px 30px;
+    background: linear-gradient(135deg, var(--laranja), var(--laranja-vivo));
+    color: white;
+}
+
+.game-info h3 {
+    font-size: 1.6rem;
+    margin: 0 0 10px;
+}
+
+.game-info p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Controles do carrossel */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto 60px;
+}
+
+.game-navigation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-button {
+    background: linear-gradient(to right, var(--laranja), var(--laranja-vivo));
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.carousel-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Indicadores dos jogos */
+.game-indicators {
+    display: flex;
+    gap: 10px;
+}
+
+.game-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--amarelo);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-indicator.active {
+    opacity: 1;
+    transform: scale(1.2);
+    background-color: var(--laranja-vivo);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    #game-display {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    #game-display {
+        height: 400px;
+    }
+    
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .game-info h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #game-display {
+        height: 300px;
+    }
+    
+    .game-indicators {
+        gap: 8px;
+    }
+    
+    .game-indicator {
+        width: 8px;
+        height: 8px;
     }
 } 

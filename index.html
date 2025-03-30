@@ -86,6 +86,15 @@
             </ul>
         </div>
 
+        <!-- Seção de Certificados e Prêmios -->
+        <div class="panel">
+            <h2>Certificados e Prêmios</h2>
+            <ul class="list">
+                <li>Prêmio de Melhor Jogo Independente - GameDev 2023</li>
+                <li>Certificação em Unreal Engine - Coursera</li>
+            </ul>
+        </div>
+
         <!-- Seção de Habilidades Técnicas -->
         <div class="panel">
             <h2>Habilidades Técnicas</h2>
@@ -121,31 +130,77 @@
             </div>
         </div>
 
+        <!-- Separador decorativo -->
+        <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-icon"><i class="fas fa-code"></i></div>
+            <div class="divider-line"></div>
+        </div>
+
         <h2>Jogos da Faculdade/Pessoais</h2>
         <div class="projects-grid">
             <div class="project project-vertical">
                 <h3>Jogo Exemplo 1</h3>
+                <img src="https://via.placeholder.com/350x200/F5CB40/333333?text=Jogo+1" alt="Imagem do Jogo 1" class="game-thumbnail">
                 <p>Descrição breve do jogo.</p>
                 <a href="https://itch.io/jogo-exemplo-1" target="_blank">Ver no Itch.io</a>
             </div>
             <div class="project project-vertical">
                 <h3>Jogo Exemplo 2</h3>
+                <img src="https://via.placeholder.com/350x200/F18805/333333?text=Jogo+2" alt="Imagem do Jogo 2" class="game-thumbnail">
                 <p>Descrição breve do jogo.</p>
                 <a href="https://itch.io/jogo-exemplo-2" target="_blank">Ver no Itch.io</a>
             </div>
+            <div class="project project-vertical">
+                <h3>Jogo Exemplo 3</h3>
+                <img src="https://via.placeholder.com/350x200/B1B835/333333?text=Jogo+3" alt="Imagem do Jogo 3" class="game-thumbnail">
+                <p>Descrição breve do jogo.</p>
+                <a href="https://itch.io/jogo-exemplo-3" target="_blank">Ver no Itch.io</a>
+            </div>
+            <div class="project project-vertical">
+                <h3>Jogo Exemplo 4</h3>
+                <img src="https://via.placeholder.com/350x200/F05913/333333?text=Jogo+4" alt="Imagem do Jogo 4" class="game-thumbnail">
+                <p>Descrição breve do jogo.</p>
+                <a href="https://itch.io/jogo-exemplo-4" target="_blank">Ver no Itch.io</a>
+            </div>
         </div>
 
-        <h2>Meus Playables</h2>
-        <div class="projects-grid">
-            <div class="project">
-                <h3>Playable Jogo Exemplo 1</h3>
-                <p>Descrição do jogo. Clique para jogar!</p>
-                <iframe src="https://misantiago17.github.io/jogos/space_adventure.html"></iframe>
+        <!-- Seção de Playables com carrossel -->
+        <h2 id="playables">Meus Playables</h2>
+        <div class="playables-intro">
+            <p>Aqui você encontra uma seleção dos meus jogos que podem ser jogados diretamente no navegador. Use as setas para navegar entre os diferentes jogos e experimentá-los imediatamente!</p>
+        </div>
+
+        <!-- Área de exibição do jogo -->
+        <div class="game-display-container">
+            <div class="game-display-wrapper">
+                <div id="game-display">
+                    <!-- O jogo selecionado será carregado aqui -->
+                    <iframe id="game-iframe" src="https://misantiago17.github.io/jogos/space_adventure.html" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 id="game-title">Playable 1</h3>
+                    <p id="game-description">Um jogo divertido com mecânicas simples e desafios interessantes.</p>
+                </div>
             </div>
-            <div class="project">
-                <h3>Playable Jogo Exemplo 2</h3>
-                <p>Descrição do jogo. Clique para jogar!</p>
-                <iframe src="https://misantiago17.github.io/jogos/jogo2.html"></iframe>
+        </div>
+
+        <div class="carousel-controls">
+            <div class="game-navigation">
+                <button class="carousel-button prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="game-indicators">
+                    <span class="game-indicator active" data-index="0"></span>
+                    <span class="game-indicator" data-index="1"></span>
+                    <span class="game-indicator" data-index="2"></span>
+                    <span class="game-indicator" data-index="3"></span>
+                    <span class="game-indicator" data-index="4"></span>
+                    <span class="game-indicator" data-index="5"></span>
+                </div>
+                <button class="carousel-button next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
 
@@ -158,16 +213,15 @@
             </div>
         </div>
 
-        <div class="panel">
-            <h2>Certificados e Prêmios</h2>
-            <ul class="list">
-                <li>Prêmio de Melhor Jogo Independente - GameDev 2023</li>
-                <li>Certificação em Unreal Engine - Coursera</li>
-            </ul>
+        <!-- Separador decorativo -->
+        <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-icon"><i class="fas fa-gamepad"></i></div>
+            <div class="divider-line"></div>
         </div>
 
         <!-- Seção de Contato -->
-        <div class="contact-form">
+        <div class="contact-form" id="contato">
             <h3>Entre em Contato</h3>
             <form action="#">
                 <input type="text" placeholder="Seu nome" required>
