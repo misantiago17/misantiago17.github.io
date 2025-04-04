@@ -2,18 +2,54 @@
 const nav = document.querySelector('.nav-main');
 const navSpacer = document.querySelector('.nav-spacer');
 const navHeight = nav.offsetHeight;
-const headerHeight = document.querySelector('header').offsetHeight;
+
+// Efeito de digitação para o texto da hero section
+document.addEventListener('DOMContentLoaded', function() {
+    const typedTextElement = document.querySelector('.typed-text');
+    
+    if (typedTextElement) {
+        const texts = ['Game Developer', 'Unity Developer', 'Unreal Developer', 'C# Programmer'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                // Deletando texto
+                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50; // Velocidade mais rápida ao deletar
+            } else {
+                // Digitando texto
+                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150; // Velocidade normal ao digitar
+            }
+            
+            // Gerencia a lógica de digitação/deleção
+            if (!isDeleting && charIndex === currentText.length) {
+                // Pausa quando terminar de digitar
+                isDeleting = true;
+                typingSpeed = 1500; // Pausa antes de começar a deletar
+            } else if (isDeleting && charIndex === 0) {
+                // Muda para o próximo texto quando terminar de deletar
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500; // Pausa antes de digitar o próximo texto
+            }
+            
+            setTimeout(typeEffect, typingSpeed);
+        }
+        
+        // Inicia o efeito de digitação
+        setTimeout(typeEffect, 1000);
+    }
+});
 
 window.addEventListener('scroll', function() {
-    // Verifica se o usuário já rolou além do cabeçalho
-    if (window.scrollY >= headerHeight) {
-        nav.classList.add('fixed');
-        navSpacer.classList.add('active');
-    } else {
-        nav.classList.remove('fixed');
-        navSpacer.classList.remove('active');
-    }
-    
     // Controla o botão de voltar ao topo
     var backToTop = document.querySelector('.back-to-top');
     if (backToTop) {
@@ -24,12 +60,23 @@ window.addEventListener('scroll', function() {
         }
     }
     
+    // Muda a aparência da navegação durante o scroll
+    if (window.scrollY > 100) {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.15)';
+        nav.style.padding = '12px 40px';
+    } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+        nav.style.padding = '15px 40px';
+    }
+    
     // Identifica qual seção está visível e destaca o link correspondente
     highlightNavigation();
 });
 
 // Rolagem suave para as âncoras
-document.querySelectorAll('.nav-main a').forEach(anchor => {
+document.querySelectorAll('.nav-main a, .scroll-down a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -39,30 +86,16 @@ document.querySelectorAll('.nav-main a').forEach(anchor => {
         });
         
         // Adiciona a classe 'active' ao link clicado
-        this.classList.add('active');
+        if (this.classList.contains('nav-main')) {
+            this.classList.add('active');
+        }
         
         // Rola até a seção
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-            // Offset personalizado para cada tipo de seção para melhor posicionamento
-            let offsetAdjust = 200; // Aumentando o valor padrão para outras seções
-            
-            // Ajusta o offset de acordo com o tipo de elemento ou ID específico
-            if (targetId === '#sobre-mim') {
-                offsetAdjust = 400; // Valor exato solicitado para Sobre Mim
-            } else if (targetId === '#habilidades') {
-                offsetAdjust = 250;
-            } else if (targetId === '#jogos-pontuais') {
-                offsetAdjust = 250;
-            } else if (targetId === '#contato') {
-                offsetAdjust = 200; // Mantendo o valor que já estava bom
-            } else {
-                offsetAdjust = 200; // Valor para outras seções
-            }
-            
-            const offsetTop = targetElement.offsetTop - navHeight + offsetAdjust;
+            const offsetTop = targetElement.offsetTop - navHeight;
             
             window.scrollTo({
                 top: offsetTop,
@@ -74,7 +107,7 @@ document.querySelectorAll('.nav-main a').forEach(anchor => {
 
 // Função que destaca o link da navegação correspondente à seção visível
 function highlightNavigation() {
-    const sections = document.querySelectorAll('section[id], div[id="habilidades"], h2[id="jogos-pontuais"], h2[id="playables"], .contact-form[id]');
+    const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-main a');
     const scrollPosition = window.scrollY + nav.offsetHeight + 50; // Ajuste para considerar a navegação fixa
     
@@ -98,7 +131,7 @@ function highlightNavigation() {
     
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === currentSection) {
+        if (link.getAttribute('href') === `#${currentSection}`) {
             link.classList.add('active');
         }
     });
@@ -108,6 +141,21 @@ function highlightNavigation() {
 const backToTopButton = document.querySelector('.back-to-top');
 if (backToTopButton) {
     backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Adiciona o botão de voltar ao topo se não existir no HTML
+if (!backToTopButton) {
+    const backToTop = document.createElement('div');
+    backToTop.className = 'back-to-top';
+    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTop);
+    
+    backToTop.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
