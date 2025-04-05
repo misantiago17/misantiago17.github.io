@@ -236,4 +236,71 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Observa as estatísticas para animação
+    observeStats();
+
+    // Inicializar botão de download
+    initDownloadButton();
 });
+
+// Contador animado para as estatísticas
+function animateCounters() {
+    const counters = document.querySelectorAll('.count-up');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.textContent);
+        const duration = 2000; // Duração em milissegundos
+        const step = Math.ceil(target / (duration / 30)); // 30 fps
+        
+        let current = 0;
+        const updateCounter = () => {
+            current += step;
+            
+            if (current < target) {
+                counter.textContent = current;
+                setTimeout(updateCounter, 30);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    });
+}
+
+// Verifica quando a seção de estatísticas está visível e inicia a animação
+const observeStats = () => {
+    const statsContainer = document.querySelector('.stats-container');
+    
+    if (statsContainer) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Se a seção de estatísticas estiver visível, inicia a animação
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target); // Executa apenas uma vez
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsContainer);
+    }
+};
+
+// Função para animar o botão de download do CV
+function initDownloadButton() {
+    const downloadBtn = document.querySelector('.download-cv-btn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('mouseenter', function() {
+            this.innerHTML = '<i class="fas fa-download"></i> Baixando...';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Pronto para download!';
+            }, 500);
+        });
+        
+        downloadBtn.addEventListener('mouseleave', function() {
+            this.innerHTML = '<i class="fas fa-download"></i> Download CV';
+        });
+    }
+}

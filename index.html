@@ -6,6 +6,9 @@
     <title>Michelle Santiago | Game Developer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navegação principal no topo -->
@@ -22,8 +25,8 @@
     <!-- Espaçador para quando a navegação ficar fixa -->
     <div class="nav-spacer"></div>
 
-    <!-- Nova seção Hero -->
-    <section id="hero" class="hero-section">
+    <!-- Hero Section -->
+    <section class="hero">
         <!-- Elementos decorativos de código -->
         <div class="code-elements">
             <div class="code-element">function createGame() { <br>&nbsp;&nbsp;return new GameEngine(); <br>}</div>
@@ -45,46 +48,37 @@
             <div class="pixel"></div>
         </div>
         
-        <div class="hero-container">
+        <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <div class="intro-badge">Game Developer</div>
                     <h1>Michelle Santiago</h1>
-                    <div class="hero-subtitle">
-                        <span class="typed-text">Game Developer</span>
-                    </div>
-                    <p class="hero-description">Criando experiências interativas e imersivas através da programação de jogos</p>
-                    
-                    <div class="hero-buttons">
-                        <a href="./assets/cv_michelle_santiago.pdf" download class="download-cv-btn">
-                            <i class="fas fa-download"></i> Download CV
-                        </a>
-                    </div>
-                    
-                    <div class="hero-social">
-                        <a href="https://www.linkedin.com/in/seulinkedin" target="_blank" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/seuusername" target="_blank" class="social-icon">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.instagram.com/seuinstagram" target="_blank" class="social-icon">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://twitter.com/seutwitter" target="_blank" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                    <div class="hero-subtitle">Desenvolvedora de Jogos</div>
+                    <p class="hero-tagline">Transformando ideias em experiências interativas e criando mundos digitais que cativam e surpreendem.</p>
+                    <div class="hero-cta">
+                        <a href="./assets/cv_michelle_santiago.pdf" download class="download-cv-btn"><i class="fas fa-download"></i> Download CV</a>
                     </div>
                 </div>
                 
-                <div class="hero-image">
-                    <img src="https://placehold.co/500x500/F5CB40/333333?text=Profile+Photo" alt="Michelle Santiago" class="profile-photo">
+                <div class="hero-visual">
+                    <div class="profile-frame">
+                        <img src="https://placehold.co/500x500/F5CB40/333333?text=Profile+Photo" alt="Michelle Santiago" class="profile-photo">
+                        <div class="profile-decoration"></div>
+                    </div>
+                    <div class="social-sidebar">
+                        <div class="social-connector"></div>
+                        <a href="https://github.com/seuusername" target="_blank" class="sidebar-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/seulinkedin" target="_blank" class="sidebar-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/seutwitter" target="_blank" class="sidebar-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:contato@michellesantiago.com" class="sidebar-icon"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-        
         <div class="scroll-down">
             <a href="#sobre-mim">
-                <i class="fas fa-chevron-down"></i>
+                <span class="scroll-arrow"></span>
+                <span class="scroll-text">Scroll</span>
             </a>
         </div>
     </section>
@@ -96,28 +90,84 @@
 
     <!-- Seção de Sobre Mim -->
     <section class="intro-section" id="sobre-mim">
-        <div class="section-container">
-            <h2>Sobre Mim</h2>
-            <div class="sobre-mim-container">
-                <div class="profile-text">
-                    <p>Oi, eu sou Michelle, desenvolvedora de jogos com experiência em diversas plataformas e tecnologias. Sou uma profissional com foco em criar experiências imersivas e de alta qualidade. Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
+        <div class="section-container about-container">
+            <div class="about-left">
+                <div class="about-image-wrapper">
+                    <img src="https://placehold.co/400x500/F5CB40/333333?text=Profile+Photo" alt="Michelle Santiago" class="about-profile-image">
+                    <div class="image-decoration"></div>
+                </div>
+                <div class="name-signature">
+                    <h3>Michelle Santiago</h3>
+                    <span class="title-accent">Game Developer & Programadora</span>
                 </div>
             </div>
             
-            <!-- Estatísticas integradas na seção Sobre Mim -->
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">300+</div>
-                    <div class="stat-label">Cursos</div>
+            <div class="about-right">
+                <div class="section-header">
+                    <span class="section-tag">SOBRE MIM</span>
+                    <h2>Game Developer & <span class="highlight">Unity Specialist</span></h2>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Expert Mentors</div>
+                
+                <div class="about-description">
+                    <p>Oi, eu sou Michelle, desenvolvedora de jogos com experiência em diversas plataformas e tecnologias. Sou uma profissional com foco em criar experiências imersivas e de alta qualidade.</p>
+                    <p>Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Horas de Conteúdo</div>
+                
+                <div class="personal-info">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-calendar"></i> Experiência:</span>
+                            <span class="info-value">5+ anos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-map-marker-alt"></i> Localização:</span>
+                            <span class="info-value">São Paulo, Brasil</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-envelope"></i> Email:</span>
+                            <span class="info-value">contato@michellesantiago.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-briefcase"></i> Freelance:</span>
+                            <span class="info-value available">Disponível</span>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="cta-buttons">
+                    <a href="./assets/cv_michelle_santiago.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                    <a href="#contato" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Estatísticas com visual destacado -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="stat-number count-up">300<span class="plus">+</span></div>
+                <div class="stat-label">Cursos Completados</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-number count-up">50<span class="plus">+</span></div>
+                <div class="stat-label">Expert Mentors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                <div class="stat-number count-up">1000<span class="plus">+</span></div>
+                <div class="stat-label">Horas de Conteúdo</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="stat-number count-up">25<span class="plus">+</span></div>
+                <div class="stat-label">Projetos Concluídos</div>
             </div>
         </div>
     </section>
