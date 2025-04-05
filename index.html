@@ -14,7 +14,7 @@
             <li><a href="#hero" class="active">Início</a></li>
             <li><a href="#sobre-mim">Sobre Mim</a></li>
             <li><a href="#habilidades">Habilidades</a></li>
-            <li><a href="#jogos-pontuais">Projetos</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
     </nav>
@@ -163,82 +163,173 @@
             <div class="divider-line"></div>
         </div>
 
-        <h2 id="jogos-pontuais">Jogos Pontuais</h2>
-        <div class="projects-grid jogos-pontuais">
-            <div class="project project-full-width">
-                <h3>Jogo Publicado - Space Battle</h3>
-                <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ.</p>
-                <a href="https://storelink.com" target="_blank" class="store-button">Ver na loja</a>
-                <img src="https://example.com/imagem-do-jogo.jpg" alt="Imagem do jogo">
+        <!-- Nova seção de Portfolio unificada -->
+        <section id="portfolio" class="portfolio-section">
+            <h2>Meu Portfólio</h2>
+            
+            <!-- Filtros de portfólio -->
+            <div class="portfolio-filters">
+                <ul>
+                    <li data-filter="*" class="filter-active">TODOS</li>
+                    <li data-filter=".filter-pontuais">JOGOS PONTUAIS</li>
+                    <li data-filter=".filter-playables">PLAYABLES</li>
+                    <li data-filter=".filter-pessoais">JOGOS PESSOAIS</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Seção de Playables com carrossel -->
-        <h2 id="playables">Meus Playables</h2>
-        <div class="playables-intro">
-            <p>Aqui você encontra uma seleção dos meus jogos que podem ser jogados diretamente no navegador. Use as setas para navegar entre os diferentes jogos e experimentá-los imediatamente!</p>
-        </div>
+            <div class="portfolio-container">
+                <!-- Grid unificada com todos os projetos -->
+                <div class="projects-grid">
+                    <!-- Jogos Pontuais -->
+                    <div class="project-card filter-pontuais" data-category="pontuais">
+                        <div class="card-inner pontuais-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Space+Battle" alt="Imagem do jogo">
+                            </div>
+                            <div class="project-content">
+                                <h3>Space Battle</h3>
+                                <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ.</p>
+                            </div>
+                            <div class="category-icon pontuais-icon">
+                                <span>p</span>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Área de exibição do jogo -->
-        <div class="game-display-container">
-            <div class="game-display-wrapper">
-                <div id="game-display">
-                    <!-- O jogo selecionado será carregado aqui -->
-                    <iframe id="game-iframe" src="https://misantiago17.github.io/jogos/space_adventure.html" allowfullscreen></iframe>
+                    <!-- Playables -->
+                    <div class="project-card filter-playables" data-category="playables">
+                        <div class="card-inner playables-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=AFK+Soccer+1" alt="AFK Soccer 1">
+                            </div>
+                            <div class="project-content">
+                                <h3>AFK Soccer 1</h3>
+                                <p>Jogo de futebol casual com mecânicas simples.</p>
+                            </div>
+                            <div class="category-icon playables-icon">
+                                <span>ya</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-playables" data-category="playables">
+                        <div class="card-inner playables-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=AFK+Soccer+2" alt="AFK Soccer 2">
+                            </div>
+                            <div class="project-content">
+                                <h3>AFK Soccer 2</h3>
+                                <p>Nova versão do jogo de futebol com recursos adicionais.</p>
+                            </div>
+                            <div class="category-icon playables-icon">
+                                <span>ya</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-playables" data-category="playables">
+                        <div class="card-inner playables-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Battle+Tanks+1" alt="Battle Tanks 1">
+                            </div>
+                            <div class="project-content">
+                                <h3>Battle Tanks 1</h3>
+                                <p>Controle tanques em batalhas intensas com estratégia.</p>
+                            </div>
+                            <div class="category-icon playables-icon">
+                                <span>ya</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-playables" data-category="playables">
+                        <div class="card-inner playables-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Battle+Tanks+2" alt="Battle Tanks 2">
+                            </div>
+                            <div class="project-content">
+                                <h3>Battle Tanks 2</h3>
+                                <p>Versão atualizada do Battle Tanks com novos mapas.</p>
+                            </div>
+                            <div class="category-icon playables-icon">
+                                <span>ya</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jogos Pessoais -->
+                    <div class="project-card filter-pessoais" data-category="pessoais">
+                        <div class="card-inner pessoais-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+1" alt="Imagem do Jogo 1" class="game-thumbnail">
+                            </div>
+                            <div class="project-content">
+                                <h3>Jogo Exemplo 1</h3>
+                                <p>Descrição breve do jogo.</p>
+                            </div>
+                            <div class="category-icon pessoais-icon">
+                                <span>p</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-pessoais" data-category="pessoais">
+                        <div class="card-inner pessoais-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+2" alt="Imagem do Jogo 2" class="game-thumbnail">
+                            </div>
+                            <div class="project-content">
+                                <h3>Jogo Exemplo 2</h3>
+                                <p>Descrição breve do jogo.</p>
+                            </div>
+                            <div class="category-icon pessoais-icon">
+                                <span>p</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-pessoais" data-category="pessoais">
+                        <div class="card-inner pessoais-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+3" alt="Imagem do Jogo 3" class="game-thumbnail">
+                            </div>
+                            <div class="project-content">
+                                <h3>Jogo Exemplo 3</h3>
+                                <p>Descrição breve do jogo.</p>
+                            </div>
+                            <div class="category-icon pessoais-icon">
+                                <span>p</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card filter-pessoais" data-category="pessoais">
+                        <div class="card-inner pessoais-type">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+4" alt="Imagem do Jogo 4" class="game-thumbnail">
+                            </div>
+                            <div class="project-content">
+                                <h3>Jogo Exemplo 4</h3>
+                                <p>Descrição breve do jogo.</p>
+                            </div>
+                            <div class="category-icon pessoais-icon">
+                                <span>p</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="game-info">
-                    <h3 id="game-title">Playable 1</h3>
-                    <p id="game-description">Um jogo divertido com mecânicas simples e desafios interessantes.</p>
+                
+                <!-- Área de modal para exibir o jogo quando clicado -->
+                <div id="game-modal" class="game-modal">
+                    <div class="game-modal-content">
+                        <span class="close-modal">&times;</span>
+                        <div id="game-display">
+                            <iframe id="game-iframe" src="" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="carousel-controls">
-            <div class="game-navigation">
-                <button class="carousel-button prev-button">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="game-indicators">
-                    <span class="game-indicator active" data-index="0"></span>
-                    <span class="game-indicator" data-index="1"></span>
-                    <span class="game-indicator" data-index="2"></span>
-                    <span class="game-indicator" data-index="3"></span>
-                    <span class="game-indicator" data-index="4"></span>
-                    <span class="game-indicator" data-index="5"></span>
-                </div>
-                <button class="carousel-button next-button">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <h2>Jogos da Faculdade/Pessoais</h2>
-        <div class="projects-grid">
-            <div class="project project-vertical">
-                <h3>Jogo Exemplo 1</h3>
-                <img src="https://via.placeholder.com/350x200/F5CB40/333333?text=Jogo+1" alt="Imagem do Jogo 1" class="game-thumbnail">
-                <p>Descrição breve do jogo.</p>
-                <a href="https://itch.io/jogo-exemplo-1" target="_blank">Ver no Itch.io</a>
-            </div>
-            <div class="project project-vertical">
-                <h3>Jogo Exemplo 2</h3>
-                <img src="https://via.placeholder.com/350x200/F18805/333333?text=Jogo+2" alt="Imagem do Jogo 2" class="game-thumbnail">
-                <p>Descrição breve do jogo.</p>
-                <a href="https://itch.io/jogo-exemplo-2" target="_blank">Ver no Itch.io</a>
-            </div>
-            <div class="project project-vertical">
-                <h3>Jogo Exemplo 3</h3>
-                <img src="https://via.placeholder.com/350x200/B1B835/333333?text=Jogo+3" alt="Imagem do Jogo 3" class="game-thumbnail">
-                <p>Descrição breve do jogo.</p>
-                <a href="https://itch.io/jogo-exemplo-3" target="_blank">Ver no Itch.io</a>
-            </div>
-            <div class="project project-vertical">
-                <h3>Jogo Exemplo 4</h3>
-                <img src="https://via.placeholder.com/350x200/F05913/333333?text=Jogo+4" alt="Imagem do Jogo 4" class="game-thumbnail">
-                <p>Descrição breve do jogo.</p>
-                <a href="https://itch.io/jogo-exemplo-4" target="_blank">Ver no Itch.io</a>
-            </div>
-        </div>
+        </section>
 
         <!-- Separador decorativo -->
         <div class="section-divider">
@@ -248,38 +339,71 @@
         </div>
 
         <!-- Seção de Contato -->
-        <div class="contact-form" id="contato">
-            <h3>Entre em Contato</h3>
-            <form action="#">
-                <input type="text" placeholder="Seu nome" required>
-                <input type="email" placeholder="Seu email" required>
-                <textarea placeholder="Sua mensagem" rows="5" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
-
-        <div class="social-links">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/seulinkedin" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/seuusername" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.instagram.com/seuinstagram" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://twitter.com/seutwitter" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
+        <section id="contato" class="contact-section">
+            <h2>Entre em Contato</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>Estou interessada em oportunidades de desenvolvimento de jogos. Se você tem um projeto, uma pergunta ou apenas quer dizer olá, sinta-se à vontade para entrar em contato comigo!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@michellesantiago.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>São Paulo, Brasil</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links-contact">
+                        <h3>Redes Sociais</h3>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/seulinkedin" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/seuusername" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.instagram.com/seuinstagram" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://twitter.com/seutwitter" target="_blank" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form action="#" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Seu email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Sua mensagem" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Enviar
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <footer>
         <p>&copy; 2025 Michelle Santiago - Todos os direitos reservados.</p>
     </footer>
+    
+    <!-- Botão voltar ao topo -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
