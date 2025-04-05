@@ -167,32 +167,38 @@ if (!backToTopButton) {
 document.addEventListener('DOMContentLoaded', function() {
     // Filtros de portfólio
     const filterButtons = document.querySelectorAll('.portfolio-filters li');
-    const projects = document.querySelectorAll('.project-card');
-
-    // Adiciona o evento de clique para cada botão de filtro
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove a classe ativa de todos os botões
-            filterButtons.forEach(btn => btn.classList.remove('filter-active'));
-            
-            // Adiciona a classe ativa ao botão clicado
-            this.classList.add('filter-active');
-            
-            // Obtém o filtro selecionado
-            const filter = this.getAttribute('data-filter');
-            
-            // Filtra os projetos com base no filtro selecionado
-            projects.forEach(project => {
-                if (filter === '*') {
-                    project.style.display = 'block';
-                } else if (project.classList.contains(filter)) {
-                    project.style.display = 'block';
-                } else {
-                    project.style.display = 'none';
-                }
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Verifica se existem botões de filtro e cards de projeto
+    if (filterButtons.length > 0 && projectCards.length > 0) {
+        // Adiciona o evento de clique para cada botão de filtro
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove a classe ativa de todos os botões
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('filter-active');
+                });
+                
+                // Adiciona a classe ativa ao botão clicado
+                this.classList.add('filter-active');
+                
+                // Obtém o filtro selecionado
+                const filterValue = this.getAttribute('data-filter');
+                console.log('Filtro selecionado:', filterValue);
+                
+                // Filtra os projetos com base no filtro selecionado
+                projectCards.forEach(card => {
+                    if (filterValue === '*') {
+                        card.style.display = 'block';
+                    } else if (card.classList.contains(filterValue.substring(1))) { // Remove o ponto do início
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
 
     // Gerenciamento do modal para jogos clicáveis
     const modal = document.getElementById('game-modal');
@@ -201,49 +207,33 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Adiciona evento de clique para cada projeto playable
     const playableProjects = document.querySelectorAll('.filter-playables');
-    playableProjects.forEach(project => {
-        project.addEventListener('click', function() {
-            // Aqui você poderia carregar o URL do jogo específico
-            const gameUrl = this.getAttribute('data-game-url') || 'https://example.com/game-placeholder';
-            gameIframe.src = gameUrl;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Previne rolagem da página
+    if (playableProjects.length > 0 && modal && gameIframe) {
+        playableProjects.forEach(project => {
+            project.addEventListener('click', function() {
+                // Aqui você poderia carregar o URL do jogo específico
+                const gameUrl = this.getAttribute('data-game-url') || 'https://example.com/game-placeholder';
+                gameIframe.src = gameUrl;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Previne rolagem da página
+            });
         });
-    });
-    
-    // Fecha o modal quando clica no X
-    closeModal.addEventListener('click', function() {
-        modal.classList.remove('active');
-        gameIframe.src = '';
-        document.body.style.overflow = 'auto'; // Reativa a rolagem
-    });
-    
-    // Fecha o modal quando clica fora dele
-    window.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            gameIframe.src = '';
-            document.body.style.overflow = 'auto';
+        
+        // Fecha o modal quando clica no X
+        if (closeModal) {
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('active');
+                gameIframe.src = '';
+                document.body.style.overflow = 'auto'; // Reativa a rolagem
+            });
         }
-    });
-    
-    // Botão voltar ao topo
-    const backToTopButton = document.querySelector('.back-to-top');
-    
-    // Mostra/oculta o botão com base na posição de rolagem
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    });
-    
-    // Rolagem suave para o topo quando o botão é clicado
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        
+        // Fecha o modal quando clica fora dele
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                gameIframe.src = '';
+                document.body.style.overflow = 'auto';
+            }
         });
-    });
+    }
 });
