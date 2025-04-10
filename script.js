@@ -8,11 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const typedTextElement = document.querySelector('.typed-text');
     
     if (typedTextElement) {
-        const texts = ['Game Developer', 'Unity Developer', 'Unreal Developer', 'C# Programmer'];
+        const texts = [
+            'Unity Specialist',
+            'Game Developer',
+            'C# Programmer',
+            'Unreal Engine Developer',
+            'Criadora de Experiências',
+            'Mobile Game Developer'
+        ];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
         let typingSpeed = 100;
+
+        // Adiciona o cursor
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        typedTextElement.parentNode.insertBefore(cursor, typedTextElement.nextSibling);
         
         function typeEffect() {
             const currentText = texts[textIndex];
@@ -33,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isDeleting && charIndex === currentText.length) {
                 // Pausa quando terminar de digitar
                 isDeleting = true;
-                typingSpeed = 1500; // Pausa antes de começar a deletar
+                typingSpeed = 2000; // Pausa antes de começar a deletar
             } else if (isDeleting && charIndex === 0) {
                 // Muda para o próximo texto quando terminar de deletar
                 isDeleting = false;
@@ -62,13 +74,9 @@ window.addEventListener('scroll', function() {
     
     // Muda a aparência da navegação durante o scroll
     if (window.scrollY > 100) {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.15)';
-        nav.style.padding = '12px 40px';
+        nav.classList.add('scrolled');
     } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-        nav.style.padding = '15px 40px';
+        nav.classList.remove('scrolled');
     }
     
     // Identifica qual seção está visível e destaca o link correspondente
@@ -244,6 +252,25 @@ document.addEventListener('DOMContentLoaded', function() {
     initDownloadButton();
 });
 
+// Verifica quando a seção de estatísticas está visível e inicia a animação
+const observeStats = () => {
+    const statsContainer = document.querySelector('.stats-container');
+    
+    if (statsContainer) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Se a seção de estatísticas estiver visível, inicia a animação
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target); // Executa apenas uma vez
+                }
+            });
+        }, { threshold: 0.3 }); // Reduzido para 0.3 para iniciar a animação mais cedo
+        
+        observer.observe(statsContainer);
+    }
+};
+
 // Contador animado para as estatísticas
 function animateCounters() {
     const counters = document.querySelectorAll('.count-up');
@@ -261,32 +288,19 @@ function animateCounters() {
                 counter.textContent = current;
                 setTimeout(updateCounter, 30);
             } else {
-                counter.textContent = target;
+                counter.textContent = target + "+";
+                
+                // Adiciona efeito de destaque quando a contagem termina
+                counter.style.textShadow = "0 0 15px rgba(255, 107, 0, 0.7)";
+                setTimeout(() => {
+                    counter.style.textShadow = "none";
+                }, 500);
             }
         };
         
         updateCounter();
     });
 }
-
-// Verifica quando a seção de estatísticas está visível e inicia a animação
-const observeStats = () => {
-    const statsContainer = document.querySelector('.stats-container');
-    
-    if (statsContainer) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Se a seção de estatísticas estiver visível, inicia a animação
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target); // Executa apenas uma vez
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(statsContainer);
-    }
-};
 
 // Função para animar o botão de download do CV
 function initDownloadButton() {

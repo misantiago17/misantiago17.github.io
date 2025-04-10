@@ -18,7 +18,7 @@
             <li><a href="#sobre-mim">Sobre Mim</a></li>
             <li><a href="#habilidades">Habilidades</a></li>
             <li><a href="#portfolio">Portfólio</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
         </ul>
     </nav>
     
@@ -51,9 +51,10 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="intro-badge">Game Developer</div>
                     <h1>Michelle Santiago</h1>
-                    <div class="hero-subtitle">Desenvolvedora de Jogos</div>
+                    <div class="hero-subtitle">
+                        <span class="static-text">Game Developer</span>
+                    </div>
                     <p class="hero-tagline">Transformando ideias em experiências interativas e criando mundos digitais que cativam e surpreendem.</p>
                     <div class="hero-cta">
                         <a href="./assets/cv_michelle_santiago.pdf" download class="download-cv-btn"><i class="fas fa-download"></i> Download CV</a>
@@ -98,14 +99,14 @@
                 </div>
                 <div class="name-signature">
                     <h3>Michelle Santiago</h3>
-                    <span class="title-accent">Game Developer & Programadora</span>
+                    <span class="title-accent">Desenvolvedora Unity & C#</span>
                 </div>
             </div>
             
             <div class="about-right">
                 <div class="section-header">
                     <span class="section-tag">SOBRE MIM</span>
-                    <h2>Game Developer & <span class="highlight">Unity Specialist</span></h2>
+                    <h2>Especialista em <span class="highlight">Desenvolvimento de Jogos</span></h2>
                 </div>
                 
                 <div class="about-description">
@@ -135,39 +136,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="cta-buttons">
-                    <a href="./assets/cv_michelle_santiago.pdf" download class="btn btn-primary">
-                        <i class="fas fa-download"></i> Download CV
-                    </a>
-                    <a href="#contato" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Contato
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Estatísticas com visual destacado -->
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="stat-number count-up">300<span class="plus">+</span></div>
-                <div class="stat-label">Cursos Completados</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-number count-up">50<span class="plus">+</span></div>
-                <div class="stat-label">Expert Mentors</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                <div class="stat-number count-up">1000<span class="plus">+</span></div>
-                <div class="stat-label">Horas de Conteúdo</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
-                <div class="stat-number count-up">25<span class="plus">+</span></div>
-                <div class="stat-label">Projetos Concluídos</div>
             </div>
         </div>
     </section>
@@ -175,35 +143,134 @@
     <!-- Seção de Habilidades Técnicas -->
     <section class="panel" id="habilidades">
         <div class="section-container">
-            <h2>Habilidades Técnicas</h2>
-            <div class="skills">
-                <div>
-                    <h3>Ferramentas</h3>
-                    <ul>
-                        <li>Unreal Engine</li>
-                        <li>Unity</li>
-                        <li>Visual Studio</li>
-                        <li>Git/GitHub</li>
-                        <li>Perforce</li>
-                    </ul>
+            <div class="section-header">
+                <span class="section-tag">HABILIDADES</span>
+                <h2>Minhas <span class="highlight">Especialidades</span></h2>
+            </div>
+            
+            <!-- Estatísticas -->
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-circle"></div>
+                    </div>
+                    <div class="stat-number count-up">25</div>
+                    <div class="stat-label">Jogos Desenvolvidos</div>
                 </div>
-                <div>
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="stat-circle"></div>
+                    </div>
+                    <div class="stat-number count-up">5</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-circle"></div>
+                    </div>
+                    <div class="stat-number count-up">12</div>
+                    <div class="stat-label">Prêmios Recebidos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-circle"></div>
+                    </div>
+                    <div class="stat-number count-up">50</div>
+                    <div class="stat-label">Clientes Satisfeitos</div>
+                </div>
+            </div>
+            
+            <!-- Nova estrutura de habilidades com cards -->
+            <div class="skills-grid">
+                <!-- Game Engines -->
+                <div class="skill-card engine-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Game Engines</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tooltip="Unity - Motor de Jogos">
+                            <img src="assets/icons/unity.svg" alt="Unity">
+                        </div>
+                        <div class="skill-item" data-tooltip="Unreal Engine - Motor de Jogos">
+                            <img src="assets/icons/unreal.svg" alt="Unreal Engine">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linguagens -->
+                <div class="skill-card languages-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
                     <h3>Linguagens</h3>
-                    <ul>
-                        <li>C#</li>
-                        <li>C++</li>
-                        <li>Blueprints (Unreal Engine)</li>
-                        <li>JavaScript</li>
-                    </ul>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tooltip="C# - Linguagem Principal">
+                            <img src="assets/icons/csharp.svg" alt="C#">
+                        </div>
+                        <div class="skill-item" data-tooltip="C++ - Desenvolvimento em Unreal">
+                            <img src="assets/icons/cpp.svg" alt="C++">
+                        </div>
+                        <div class="skill-item" data-tooltip="JavaScript - Web e Games">
+                            <img src="assets/icons/javascript.svg" alt="JavaScript">
+                        </div>
+                    </div>
                 </div>
-                <div>
+
+                <!-- Plataformas -->
+                <div class="skill-card platforms-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
                     <h3>Plataformas</h3>
-                    <ul>
-                        <li>PC</li>
-                        <li>Console (PlayStation, Xbox)</li>
-                        <li>Mobile (iOS, Android)</li>
-                        <li>Web (HTML5)</li>
-                    </ul>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tooltip="Windows/PC - Desktop Games">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="skill-item" data-tooltip="Android/iOS - Mobile Games">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="skill-item" data-tooltip="Consoles - PlayStation/Xbox/Switch">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="skill-item" data-tooltip="WebGL/HTML5 - Browser Games">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferramentas -->
+                <div class="skill-card tools-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ferramentas</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tooltip="Git - Sistema de Controle de Versão">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div class="skill-item" data-tooltip="Visual Studio - IDE Principal">
+                            <img src="assets/icons/visualstudio.svg" alt="Visual Studio">
+                        </div>
+                        <div class="skill-item" data-tooltip="Perforce - Controle de Versão para Grandes Projetos">
+                            <img src="assets/icons/perforce.svg" alt="Perforce">
+                        </div>
+                        <div class="skill-item" data-tooltip="GitHub - Colaboração e Código Aberto">
+                            <i class="fab fa-github"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
