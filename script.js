@@ -233,55 +233,77 @@ function setupHorizontalScroll(scrollContainerId) {
     const nextBtn = scrollContainer.parentElement.querySelector('.next');
     const prevBtn = scrollContainer.parentElement.querySelector('.prev');
     
+    // Tamanho fixo para cada card para calcular a rolagem
+    const cardWidth = 320; // Largura aproximada de um card + gap
+    
+    // Obtém o número total de itens
+    const items = scrollContainer.querySelectorAll('.project-card');
+    // Número de itens visíveis simultaneamente (aproximado)
+    const visibleItems = Math.floor(scrollContainer.clientWidth / cardWidth);
+    
+    // Posição atual do scroll (em termos de índice)
+    let currentIndex = 0;
+    
     // Verifica se há botões de navegação
     if (nextBtn && prevBtn) {
         // Configuração para o botão "próximo"
         nextBtn.addEventListener('click', function() {
-            // Scroll suave para a direita
-            scrollContainer.scrollBy({ 
-                left: 320, // Um pouco mais que a largura de um card para garantir visibilidade
-                behavior: 'smooth'
-            });
+            // Avança para o próximo conjunto de itens
+            currentIndex = Math.min(currentIndex + visibleItems, items.length - visibleItems);
+            scrollTo(currentIndex);
+            checkScrollButtons();
         });
         
         // Configuração para o botão "anterior"
         prevBtn.addEventListener('click', function() {
-            // Scroll suave para a esquerda
-            scrollContainer.scrollBy({ 
-                left: -320,
+            // Retrocede para o conjunto anterior de itens
+            currentIndex = Math.max(currentIndex - visibleItems, 0);
+            scrollTo(currentIndex);
+            checkScrollButtons();
+        });
+        
+        // Função para rolar até um índice específico
+        function scrollTo(index) {
+            const position = Math.min(index * cardWidth, scrollContainer.scrollWidth - scrollContainer.clientWidth);
+            scrollContainer.scrollTo({
+                left: position,
                 behavior: 'smooth'
             });
-        });
+        }
         
-        // Oculta os botões quando não há mais conteúdo para rolar
-        scrollContainer.addEventListener('scroll', function() {
-            checkScrollButtons(scrollContainer, prevBtn, nextBtn);
-        });
+        // Função para verificar o estado dos botões
+        function checkScrollButtons() {
+            // Botão anterior fica desativado se estiver no início
+            if (currentIndex <= 0) {
+                prevBtn.style.opacity = '0.5';
+                prevBtn.style.pointerEvents = 'none';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.pointerEvents = 'auto';
+            }
+            
+            // Botão próximo fica desativado se estiver no fim
+            if (currentIndex >= items.length - visibleItems) {
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.pointerEvents = 'none';
+            } else {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.pointerEvents = 'auto';
+            }
+        }
         
         // Verifica o estado inicial dos botões
-        checkScrollButtons(scrollContainer, prevBtn, nextBtn);
-    }
-}
-
-// Verifica o estado dos botões de scroll com base na posição do scroll
-function checkScrollButtons(container, prevBtn, nextBtn) {
-    // Verifica se o scroll está no início
-    if (container.scrollLeft <= 10) {
-        prevBtn.style.opacity = '0.5';
-        prevBtn.style.pointerEvents = 'none';
-    } else {
-        prevBtn.style.opacity = '1';
-        prevBtn.style.pointerEvents = 'auto';
-    }
-    
-    // Verifica se o scroll está no fim
-    const maxScrollLeft = container.scrollWidth - container.clientWidth - 10;
-    if (container.scrollLeft >= maxScrollLeft) {
-        nextBtn.style.opacity = '0.5';
-        nextBtn.style.pointerEvents = 'none';
-    } else {
-        nextBtn.style.opacity = '1';
-        nextBtn.style.pointerEvents = 'auto';
+        checkScrollButtons();
+        
+        // Adiciona um ouvinte de redimensionamento para ajustar os botões conforme necessário
+        window.addEventListener('resize', function() {
+            const newVisibleItems = Math.floor(scrollContainer.clientWidth / cardWidth);
+            if (newVisibleItems !== visibleItems) {
+                // Recalcular a posição atual se a quantidade de itens visíveis mudar
+                currentIndex = Math.min(currentIndex, items.length - newVisibleItems);
+                checkScrollButtons();
+            }
+        });
     }
 }
 
@@ -618,3 +640,48 @@ function initGamePlayer() {
         }
     }
 }
+
+// Função para tentar carregar imagens de jogos de múltiplas fontes
+document.addEventListener('DOMContentLoaded', function() {
+    // Lista de possíveis URLs para a imagem do Dash Dash Attack
+    const dashDashAttackUrls = [
+        'assets/images/dash-dash-attack.jpg',
+        'https://nestgamestudio.files.wordpress.com/2018/10/screenshot-1-2.png',
+        'https://img.itch.zone/aW1hZ2UvNDI0MjM1LzIxMjMzMzAucG5n/original/0WEcgq.png',
+        'https://img.itch.zone/aW1nLzIxMjMzMzAucG5n/original/KrGfe2.png'
+    ];
+    
+    // Encontra o card do Dash Dash Attack percorrendo todos os h3
+    const headings = document.querySelectorAll('.project-card .project-content h3');
+    let dashDashCard = null;
+    
+    headings.forEach(heading => {
+        if (heading.textContent.trim() === 'Dash Dash Attack') {
+            dashDashCard = heading;
+        }
+    });
+    
+    if (dashDashCard) {
+        // Navegue até a raiz do card e então encontre a imagem
+        const cardElement = dashDashCard.closest('.project-card');
+        const cardImage = cardElement.querySelector('.game-thumbnail');
+        
+        // Função para tentar a próxima URL
+        function tryNextImage(index) {
+            if (index >= dashDashAttackUrls.length) return; // Todas as URLs falharam
+            
+            const img = new Image();
+            img.onload = function() {
+                cardImage.src = dashDashAttackUrls[index];
+                cardImage.classList.add('loaded');
+            };
+            img.onerror = function() {
+                tryNextImage(index + 1);
+            };
+            img.src = dashDashAttackUrls[index];
+        }
+        
+        // Inicia a tentativa com a primeira URL
+        tryNextImage(0);
+    }
+});

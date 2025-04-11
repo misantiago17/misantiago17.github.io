@@ -1289,13 +1289,71 @@ section {
 
 .portfolio-scroll {
     display: flex;
-    overflow-x: auto;
-    padding: 20px 0;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #F5CB40 #1e1e1e;
+    flex-wrap: nowrap;
+    overflow: hidden; /* Esconder o scroll, mas manter a capacidade de scroll via JavaScript */
     gap: 20px;
+    padding: 15px 5px;
     position: relative;
+    scroll-behavior: smooth;
+    transition: transform 0.3s ease;
+}
+
+/* Ocultar completamente as barras de scroll */
+.portfolio-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.portfolio-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+}
+
+/* Melhorar o destaque das setas de navegação */
+.portfolio-scroll-container {
+    position: relative;
+    margin: 0 -5px;
+    overflow: hidden;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(15, 15, 15, 0.8);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-arrow:hover {
+    background: rgba(255, 107, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
 }
 
 /* Estilizando a barra de rolagem */
@@ -3452,7 +3510,7 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3464,37 +3522,42 @@ footer p {
     opacity: 1;
 }
 
+/* Melhorando a centralização do conteúdo do overlay */
 .overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     text-align: center;
-    color: white;
-    padding: 20px;
+    width: 100%;
 }
 
 .game-engine {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
     display: inline-block;
-    background: rgba(255, 107, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
-    margin-bottom: 10px;
 }
 
 .project-link {
-    display: inline-block;
+    background: rgba(255, 107, 0, 0.8);
+    color: #fff;
     width: 40px;
     height: 40px;
-    background: white;
-    color: #333;
     border-radius: 50%;
-    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
 .project-link:hover {
-    background: #ff6b00;
-    color: white;
-    transform: rotate(45deg);
+    background: rgba(255, 107, 0, 1);
+    transform: scale(1.1);
 }
 
 .play-now {
@@ -4274,3 +4337,341 @@ footer p {
 .game-particles .particle:nth-child(6) { top: 35%; left: 30%; animation-delay: 3s; }
 .game-particles .particle:nth-child(7) { top: 70%; left: 80%; animation-delay: 2.5s; }
 .game-particles .particle:nth-child(8) { top: 10%; left: 40%; animation-delay: 1.2s; }
+
+/* Estilos para Jogos em Destaque (cards horizontais) */
+.featured-games-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.featured-game-card {
+    background: rgba(25, 25, 25, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 107, 0, 0.2);
+}
+
+.featured-game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.4);
+}
+
+.featured-card-inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.featured-game-image {
+    flex: 0 0 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-game-card:hover .featured-game-image img {
+    transform: scale(1.05);
+}
+
+.featured-game-content {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.featured-game-content h3 {
+    font-size: 1.6rem;
+    margin: 10px 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.featured-game-content p {
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+/* Responsividade para os cards de destaque */
+@media (max-width: 768px) {
+    .featured-card-inner {
+        flex-direction: column;
+    }
+    
+    .featured-game-image {
+        flex: 0 0 auto;
+        height: 200px;
+    }
+    
+    .featured-game-content {
+        padding: 20px;
+    }
+    
+    .featured-game-content h3 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Estilo aprimorado para os cards de jogos pessoais */
+.project-card {
+    background: rgba(25, 25, 25, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(80, 80, 80, 0.2);
+    margin: 10px;
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 107, 0, 0.2);
+    border-color: rgba(255, 107, 0, 0.4);
+}
+
+.card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-inner.pessoais-type {
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.8) 0%, rgba(20, 20, 20, 0.8) 100%);
+    border-left: 3px solid #ff6b00;
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-content {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.project-tags span {
+    background: rgba(255, 107, 0, 0.15);
+    color: #ff8f40;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 107, 0, 0.3);
+}
+
+.project-content h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.project-content p {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.project-tech {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.tech-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(80, 80, 80, 0.4);
+}
+
+.tech-icon:hover {
+    color: #fff;
+    background: rgba(255, 107, 0, 0.2);
+    border-color: rgba(255, 107, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* Estilo aprimorado para as setas de navegação */
+.scroll-arrow {
+    width: 40px;
+    height: 40px;
+    background: rgba(30, 30, 30, 0.85);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.scroll-arrow:hover {
+    background: rgba(255, 107, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
+}
+
+.prev {
+    left: -15px;
+}
+
+.next {
+    right: -15px;
+}
+
+/* Ajuste o container para dar espaço às setas */
+.portfolio-scroll-container {
+    position: relative;
+    margin: 20px 20px;
+    padding: 0 20px;
+}
+
+/* Melhorias específicas para imagens de jogos */
+.project-image {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+}
+
+.project-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 107, 0, 0.1);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-image::before {
+    opacity: 1;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.project-image img.error {
+    object-fit: contain;
+    padding: 20px;
+    background-color: #333;
+}
+
+/* Script para detectar erros de carregamento de imagem */
+@keyframes imageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.project-image img.loaded {
+    animation: imageFadeIn 0.5s ease forwards;
+}
+
+/* Estilo para o card inteiro clicável */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Garantindo que o card funcione corretamente dentro do link */
+.card-link .project-card {
+    pointer-events: none;
+}
+
+.card-link .project-link {
+    pointer-events: auto;
+    z-index: 10;
+    position: relative;
+}
