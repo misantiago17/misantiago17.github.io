@@ -274,167 +274,270 @@
     <!-- Nova seção de Portfolio unificada -->
     <section id="portfolio" class="portfolio-section">
         <div class="section-container">
-            <h2>Meu Portfólio</h2>
-            
-            <!-- Filtros de portfólio -->
-            <div class="portfolio-filters">
-                <ul>
-                    <li data-filter="*" class="filter-active">TODOS</li>
-                    <li data-filter=".filter-pontuais">JOGOS PONTUAIS</li>
-                    <li data-filter=".filter-playables">PLAYABLES</li>
-                    <li data-filter=".filter-pessoais">JOGOS PESSOAIS</li>
-                </ul>
+            <div class="portfolio-header">
+                <h2>Meu Portfólio <span class="blinker">_</span></h2>
+                <p class="portfolio-intro">Conheça os projetos que desenvolvi utilizando tecnologias como Unity, C#, Unreal Engine e muito mais. Cada jogo representa um desafio único e uma história para contar.</p>
             </div>
-
-            <div class="portfolio-container">
-                <!-- Grid unificada com todos os projetos -->
-                <div class="projects-grid">
-                    <!-- Jogos Pontuais -->
-                    <div class="project-card filter-pontuais" data-category="pontuais">
-                        <div class="card-inner pontuais-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Space+Battle" alt="Imagem do jogo">
+            
+            <!-- Categoria: Jogos Pontuais -->
+            <div class="portfolio-category">
+                <h3><i class="fas fa-trophy"></i> Jogos Pontuais</h3>
+                <div class="portfolio-scroll-container">
+                    <button class="scroll-arrow prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="portfolio-scroll" id="pontuais-scroll">
+                        <!-- Jogos Pontuais -->
+                        <div class="project-card filter-pontuais" data-category="pontuais">
+                            <div class="card-inner pontuais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Space+Battle" alt="Imagem do jogo">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fab fa-unity"></i> Unity</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>Mobile</span>
+                                        <span>Casual</span>
+                                    </div>
+                                    <h3>Space Battle</h3>
+                                    <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fab fa-unity"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-android"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-apple"></i></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="project-content">
-                                <h3>Space Battle</h3>
-                                <p>Um jogo de batalha espacial desenvolvido para a empresa XYZ.</p>
-                            </div>
-                            <div class="category-icon pontuais-icon">
-                                <span>p</span>
+                        </div>
+                        
+                        <!-- Adicionar mais jogos pontuais aqui -->
+                        <div class="project-card filter-pontuais" data-category="pontuais">
+                            <div class="card-inner pontuais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Racing+Game" alt="Racing Game">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fab fa-unity"></i> Unity</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>PC</span>
+                                        <span>Racing</span>
+                                    </div>
+                                    <h3>Racing Game</h3>
+                                    <p>Jogo de corrida desenvolvido para plataformas móveis.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fab fa-unity"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-android"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Playables -->
-                    <div class="project-card filter-playables" data-category="playables">
-                        <div class="card-inner playables-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=AFK+Soccer+1" alt="AFK Soccer 1">
+                    <button class="scroll-arrow next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Game Player Section -->
+            <div class="portfolio-category game-player-section">
+                <h3><i class="fas fa-gamepad"></i> Playables</h3>
+                <div class="featured-game-container">
+                    <div class="game-player-card">
+                        <div class="game-info-header">
+                            <div class="game-title-area">
+                                <h4>AFK Soccer</h4>
+                                <div class="game-badges">
+                                    <span class="game-badge"><i class="fab fa-html5"></i> HTML5</span>
+                                    <span class="game-badge"><i class="fab fa-js"></i> JavaScript</span>
+                                </div>
                             </div>
-                            <div class="project-content">
-                                <h3>AFK Soccer 1</h3>
-                                <p>Jogo de futebol casual com mecânicas simples.</p>
-                            </div>
-                            <div class="category-icon playables-icon">
-                                <span>ya</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card filter-playables" data-category="playables">
-                        <div class="card-inner playables-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=AFK+Soccer+2" alt="AFK Soccer 2">
-                            </div>
-                            <div class="project-content">
-                                <h3>AFK Soccer 2</h3>
-                                <p>Nova versão do jogo de futebol com recursos adicionais.</p>
-                            </div>
-                            <div class="category-icon playables-icon">
-                                <span>ya</span>
+                            <div class="game-controls-toggle">
+                                <button id="fullscreen-btn" class="control-btn"><i class="fas fa-expand"></i></button>
+                                <button id="sound-toggle" class="control-btn"><i class="fas fa-volume-up"></i></button>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="project-card filter-playables" data-category="playables">
-                        <div class="card-inner playables-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Battle+Tanks+1" alt="Battle Tanks 1">
-                            </div>
-                            <div class="project-content">
-                                <h3>Battle Tanks 1</h3>
-                                <p>Controle tanques em batalhas intensas com estratégia.</p>
-                            </div>
-                            <div class="category-icon playables-icon">
-                                <span>ya</span>
+                        
+                        <div class="game-content-area">
+                            <div class="game-player-wrapper">
+                                <div id="embedded-game-player">
+                                    <iframe id="game-frame" src="about:blank" allowfullscreen allow="autoplay; fullscreen"></iframe>
+                                </div>
+                                <div class="game-loading-overlay">
+                                    <div class="loader"></div>
+                                    <p>Carregando jogo...</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="project-card filter-playables" data-category="playables">
-                        <div class="card-inner playables-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Battle+Tanks+2" alt="Battle Tanks 2">
-                            </div>
-                            <div class="project-content">
-                                <h3>Battle Tanks 2</h3>
-                                <p>Versão atualizada do Battle Tanks com novos mapas.</p>
-                            </div>
-                            <div class="category-icon playables-icon">
-                                <span>ya</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Jogos Pessoais -->
-                    <div class="project-card filter-pessoais" data-category="pessoais">
-                        <div class="card-inner pessoais-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+1" alt="Imagem do Jogo 1" class="game-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h3>Jogo Exemplo 1</h3>
-                                <p>Descrição breve do jogo.</p>
-                            </div>
-                            <div class="category-icon pessoais-icon">
-                                <span>p</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card filter-pessoais" data-category="pessoais">
-                        <div class="card-inner pessoais-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+2" alt="Imagem do Jogo 2" class="game-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h3>Jogo Exemplo 2</h3>
-                                <p>Descrição breve do jogo.</p>
-                            </div>
-                            <div class="category-icon pessoais-icon">
-                                <span>p</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card filter-pessoais" data-category="pessoais">
-                        <div class="card-inner pessoais-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+3" alt="Imagem do Jogo 3" class="game-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h3>Jogo Exemplo 3</h3>
-                                <p>Descrição breve do jogo.</p>
-                            </div>
-                            <div class="category-icon pessoais-icon">
-                                <span>p</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card filter-pessoais" data-category="pessoais">
-                        <div class="card-inner pessoais-type">
-                            <div class="project-image">
-                                <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+4" alt="Imagem do Jogo 4" class="game-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h3>Jogo Exemplo 4</h3>
-                                <p>Descrição breve do jogo.</p>
-                            </div>
-                            <div class="category-icon pessoais-icon">
-                                <span>p</span>
+                        
+                        <div class="game-carousel-controls">
+                            <div class="carousel-navigation">
+                                <button class="carousel-nav prev-game"><i class="fas fa-chevron-left"></i></button>
+                                <div class="carousel-indicators">
+                                    <span class="carousel-dot active" data-index="0"></span>
+                                    <span class="carousel-dot" data-index="1"></span>
+                                    <span class="carousel-dot" data-index="2"></span>
+                                    <span class="carousel-dot" data-index="3"></span>
+                                    <span class="carousel-dot" data-index="4"></span>
+                                </div>
+                                <button class="carousel-nav next-game"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Área de modal para exibir o jogo quando clicado -->
-                <div id="game-modal" class="game-modal">
-                    <div class="game-modal-content">
-                        <span class="close-modal">&times;</span>
-                        <div id="game-display">
-                            <iframe id="game-iframe" src="" allowfullscreen></iframe>
+                <div class="playables-intro">
+                    Uma coleção de minigames HTML5 desenvolvidos durante meu tempo como desenvolvedora freelance. Esses jogos foram criados para demonstrar mecânicas simples mas divertidas, com foco em interações rápidas e intuitivas. Experimente cada um deles usando os controles acima!
+                </div>
+            </div>
+
+            <!-- Categoria: Jogos Pessoais -->
+            <div class="portfolio-category">
+                <h3><i class="fas fa-heart"></i> Jogos Pessoais</h3>
+                <div class="portfolio-scroll-container">
+                    <button class="scroll-arrow prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="portfolio-scroll" id="pessoais-scroll">
+                        <!-- Jogos Pessoais -->
+                        <div class="project-card filter-pessoais" data-category="pessoais">
+                            <div class="card-inner pessoais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+1" alt="Imagem do Jogo 1" class="game-thumbnail">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fab fa-unity"></i> Unity</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>Aventura</span>
+                                        <span>Indie</span>
+                                    </div>
+                                    <h3>Jogo Exemplo 1</h3>
+                                    <p>Descrição breve do jogo.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fab fa-unity"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-steam"></i></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div class="project-card filter-pessoais" data-category="pessoais">
+                            <div class="card-inner pessoais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+2" alt="Imagem do Jogo 2" class="game-thumbnail">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fab fa-unity"></i> Unity</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>Puzzle</span>
+                                        <span>2D</span>
+                                    </div>
+                                    <h3>Jogo Exemplo 2</h3>
+                                    <p>Descrição breve do jogo.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fab fa-unity"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-android"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card filter-pessoais" data-category="pessoais">
+                            <div class="card-inner pessoais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+3" alt="Imagem do Jogo 3" class="game-thumbnail">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fab fa-uncharted"></i> Unreal</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>3D</span>
+                                        <span>RPG</span>
+                                    </div>
+                                    <h3>Jogo Exemplo 3</h3>
+                                    <p>Descrição breve do jogo.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fab fa-uncharted"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-windows"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card filter-pessoais" data-category="pessoais">
+                            <div class="card-inner pessoais-type">
+                                <div class="project-image">
+                                    <img src="https://via.placeholder.com/200x150/333333/FFFFFF?text=Jogo+4" alt="Imagem do Jogo 4" class="game-thumbnail">
+                                    <div class="project-overlay">
+                                        <div class="overlay-content">
+                                            <span class="game-engine"><i class="fas fa-code"></i> Godot</span>
+                                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-tags">
+                                        <span>2D</span>
+                                        <span>Platformer</span>
+                                    </div>
+                                    <h3>Jogo Exemplo 4</h3>
+                                    <p>Descrição breve do jogo.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-icon"><i class="fas fa-code"></i></span>
+                                        <span class="tech-icon"><i class="fab fa-linux"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="scroll-arrow next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Game particles decorativos -->
+            <div class="game-particles">
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle circle-particle"></div>
+                <div class="particle circle-particle"></div>
+                <div class="particle triangle-particle"></div>
+                <div class="particle triangle-particle"></div>
+                <div class="particle square-particle"></div>
+            </div>
+            
+            <!-- Área de modal para exibir o jogo quando clicado -->
+            <div id="game-modal" class="game-modal">
+                <div class="game-modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="game-info">
+                        <h3 id="modal-game-title">Título do Jogo</h3>
+                        <p id="modal-game-description">Carregando jogo...</p>
+                    </div>
+                    <div id="game-display">
+                        <iframe id="game-iframe" src="" allowfullscreen></iframe>
+                    </div>
+                    <div class="game-controls">
+                        <div class="control-tip"><i class="fas fa-keyboard"></i> Use WASD para mover</div>
+                        <div class="control-tip"><i class="fas fa-mouse-pointer"></i> Mouse para mirar</div>
+                        <div class="control-tip"><i class="fas fa-hand-pointer"></i> Clique para atirar</div>
                     </div>
                 </div>
             </div>

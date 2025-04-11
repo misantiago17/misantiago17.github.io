@@ -171,43 +171,8 @@ if (!backToTopButton) {
     });
 }
 
-// Gerenciamento de filtros do portfólio
+// Gerenciamento do portfólio
 document.addEventListener('DOMContentLoaded', function() {
-    // Filtros de portfólio
-    const filterButtons = document.querySelectorAll('.portfolio-filters li');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    // Verifica se existem botões de filtro e cards de projeto
-    if (filterButtons.length > 0 && projectCards.length > 0) {
-        // Adiciona o evento de clique para cada botão de filtro
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove a classe ativa de todos os botões
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('filter-active');
-                });
-                
-                // Adiciona a classe ativa ao botão clicado
-                this.classList.add('filter-active');
-                
-                // Obtém o filtro selecionado
-                const filterValue = this.getAttribute('data-filter');
-                console.log('Filtro selecionado:', filterValue);
-                
-                // Filtra os projetos com base no filtro selecionado
-                projectCards.forEach(card => {
-                    if (filterValue === '*') {
-                        card.style.display = 'block';
-                    } else if (card.classList.contains(filterValue.substring(1))) { // Remove o ponto do início
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-
     // Gerenciamento do modal para jogos clicáveis
     const modal = document.getElementById('game-modal');
     const closeModal = document.querySelector('.close-modal');
@@ -218,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (playableProjects.length > 0 && modal && gameIframe) {
         playableProjects.forEach(project => {
             project.addEventListener('click', function() {
-                // Aqui você poderia carregar o URL do jogo específico
+                // Carrega o URL do jogo específico do atributo data-game-url
                 const gameUrl = this.getAttribute('data-game-url') || 'https://example.com/game-placeholder';
                 gameIframe.src = gameUrl;
                 modal.classList.add('active');
@@ -245,12 +210,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Navegação horizontal pelas setas
+    setupHorizontalScroll('pontuais-scroll');
+    setupHorizontalScroll('playables-scroll');
+    setupHorizontalScroll('pessoais-scroll');
+
     // Observa as estatísticas para animação
     observeStats();
 
     // Inicializar botão de download
     initDownloadButton();
+
+    // Inicializa o player de jogo embutido
+    initGamePlayer();
 });
+
+// Configura a navegação horizontal para cada container de portfólio
+function setupHorizontalScroll(scrollContainerId) {
+    const scrollContainer = document.getElementById(scrollContainerId);
+    if (!scrollContainer) return;
+    
+    const nextBtn = scrollContainer.parentElement.querySelector('.next');
+    const prevBtn = scrollContainer.parentElement.querySelector('.prev');
+    
+    // Verifica se há botões de navegação
+    if (nextBtn && prevBtn) {
+        // Configuração para o botão "próximo"
+        nextBtn.addEventListener('click', function() {
+            // Scroll suave para a direita
+            scrollContainer.scrollBy({ 
+                left: 320, // Um pouco mais que a largura de um card para garantir visibilidade
+                behavior: 'smooth'
+            });
+        });
+        
+        // Configuração para o botão "anterior"
+        prevBtn.addEventListener('click', function() {
+            // Scroll suave para a esquerda
+            scrollContainer.scrollBy({ 
+                left: -320,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Oculta os botões quando não há mais conteúdo para rolar
+        scrollContainer.addEventListener('scroll', function() {
+            checkScrollButtons(scrollContainer, prevBtn, nextBtn);
+        });
+        
+        // Verifica o estado inicial dos botões
+        checkScrollButtons(scrollContainer, prevBtn, nextBtn);
+    }
+}
+
+// Verifica o estado dos botões de scroll com base na posição do scroll
+function checkScrollButtons(container, prevBtn, nextBtn) {
+    // Verifica se o scroll está no início
+    if (container.scrollLeft <= 10) {
+        prevBtn.style.opacity = '0.5';
+        prevBtn.style.pointerEvents = 'none';
+    } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+    }
+    
+    // Verifica se o scroll está no fim
+    const maxScrollLeft = container.scrollWidth - container.clientWidth - 10;
+    if (container.scrollLeft >= maxScrollLeft) {
+        nextBtn.style.opacity = '0.5';
+        nextBtn.style.pointerEvents = 'none';
+    } else {
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+    }
+}
 
 // Verifica quando a seção de estatísticas está visível e inicia a animação
 const observeStats = () => {
@@ -316,5 +349,272 @@ function initDownloadButton() {
         downloadBtn.addEventListener('mouseleave', function() {
             this.innerHTML = '<i class="fas fa-download"></i> Download CV';
         });
+    }
+}
+
+// Inicializa o player de jogo embutido
+function initGamePlayer() {
+    const gameFrame = document.getElementById('game-frame');
+    const loadingOverlay = document.querySelector('.game-loading-overlay');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const soundToggleBtn = document.getElementById('sound-toggle');
+    const gamePlayerWrapper = document.querySelector('.game-player-wrapper');
+    const gameTitleArea = document.querySelector('.game-title-area');
+    const prevGameBtn = document.querySelector('.prev-game');
+    const nextGameBtn = document.querySelector('.next-game');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    const carouselTitle = document.querySelector('.carousel-title');
+    
+    if (!gameFrame) return;
+    
+    // Lista de jogos disponíveis
+    const availableGames = [
+        {
+            id: 'afksoccer1',
+            title: 'AFK Soccer (2023/05/01)',
+            type: 'Soccer',
+            icon: 'fas fa-futbol',
+            url: 'playables/afksoccer_p_202305_01_auto_applovin-75cdaab8-62ea-4c0f-8f3b-ddb4cd844d10.html',
+            instructions: [
+                { icon: 'fas fa-mouse-pointer', text: 'Clique ou toque para chutar a bola' },
+                { icon: 'fas fa-arrows-alt', text: 'Arraste para direcionar o chute' },
+                { icon: 'fas fa-trophy', text: 'Marque o máximo de gols possível' }
+            ]
+        },
+        {
+            id: 'afksoccer2',
+            title: 'AFK Soccer (2023/05/10)',
+            type: 'Soccer',
+            icon: 'fas fa-futbol',
+            url: 'playables/afksoccer_p_202305_10_auto_applovin-0bcd3f67-0389-4e56-b5ec-3b98e3e7c4b1.html',
+            instructions: [
+                { icon: 'fas fa-mouse-pointer', text: 'Clique ou toque para chutar a bola' },
+                { icon: 'fas fa-arrows-alt', text: 'Arraste para direcionar o chute' },
+                { icon: 'fas fa-trophy', text: 'Marque o máximo de gols possível' }
+            ]
+        },
+        {
+            id: 'battletanks1',
+            title: 'Battle Tanks (2021/12)',
+            type: 'Tanks',
+            icon: 'fas fa-shield-alt',
+            url: 'playables/battletanks_p_202112_03_auto_applovin-564d1749-6ece-4ff4-ad39-c390ba84f89e.html',
+            instructions: [
+                { icon: 'fas fa-keyboard', text: 'Use WASD ou setas para mover' },
+                { icon: 'fas fa-mouse-pointer', text: 'Mouse para mirar' },
+                { icon: 'fas fa-hand-pointer', text: 'Clique para atirar' }
+            ]
+        },
+        {
+            id: 'battletanks2',
+            title: 'Battle Tanks (2022/06 v4)',
+            type: 'Tanks',
+            icon: 'fas fa-shield-alt',
+            url: 'playables/battletanks_p_202206_04_auto_applovin-75a4ec4a-fd70-4e15-b870-eaf16e33b30f.html',
+            instructions: [
+                { icon: 'fas fa-keyboard', text: 'Use WASD ou setas para mover' },
+                { icon: 'fas fa-mouse-pointer', text: 'Mouse para mirar' },
+                { icon: 'fas fa-hand-pointer', text: 'Clique para atirar' }
+            ]
+        },
+        {
+            id: 'battletanks3',
+            title: 'Battle Tanks (2022/06 v9)',
+            type: 'Tanks',
+            icon: 'fas fa-shield-alt',
+            url: 'playables/battletanks_p_202206_09_auto_applovin-8cf38937-bd0e-4542-9907-7e68e13cdcdf.html',
+            instructions: [
+                { icon: 'fas fa-keyboard', text: 'Use WASD ou setas para mover' },
+                { icon: 'fas fa-mouse-pointer', text: 'Mouse para mirar' },
+                { icon: 'fas fa-hand-pointer', text: 'Clique para atirar' }
+            ]
+        }
+    ];
+    
+    // Índice do jogo atual
+    let currentGameIndex = 0;
+    
+    // Configura eventos para os controles do carrossel já existentes no HTML
+    if (nextGameBtn) {
+        nextGameBtn.addEventListener('click', nextGame);
+    }
+    
+    if (prevGameBtn) {
+        prevGameBtn.addEventListener('click', prevGame);
+    }
+    
+    // Configura os eventos para os pontos indicadores
+    if (carouselDots.length > 0) {
+        carouselDots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                currentGameIndex = parseInt(this.dataset.index);
+                changeGame(currentGameIndex);
+            });
+        });
+    }
+    
+    // Atualiza o título e instruções do jogo atual
+    updateGameInfo(availableGames[currentGameIndex]);
+    
+    // Carrega o primeiro jogo automaticamente
+    loadGame(availableGames[currentGameIndex].url);
+    
+    // Implementa a funcionalidade de tela cheia
+    if (fullscreenBtn && gamePlayerWrapper) {
+        fullscreenBtn.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                // Entra em modo de tela cheia
+                if (gamePlayerWrapper.requestFullscreen) {
+                    gamePlayerWrapper.requestFullscreen();
+                } else if (gamePlayerWrapper.mozRequestFullScreen) { // Firefox
+                    gamePlayerWrapper.mozRequestFullScreen();
+                } else if (gamePlayerWrapper.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    gamePlayerWrapper.webkitRequestFullscreen();
+                } else if (gamePlayerWrapper.msRequestFullscreen) { // IE/Edge
+                    gamePlayerWrapper.msRequestFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                // Sai do modo de tela cheia
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        });
+        
+        // Monitora mudanças no estado de tela cheia
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        
+        function updateFullscreenButton() {
+            if (document.fullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    }
+    
+    // Implementa a funcionalidade de ligar/desligar som
+    if (soundToggleBtn && gameFrame) {
+        let soundOn = true;
+        
+        soundToggleBtn.addEventListener('click', function() {
+            soundOn = !soundOn;
+            
+            // Atualiza o ícone do botão
+            if (soundOn) {
+                soundToggleBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                soundToggleBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+            
+            // Envia mensagem para o iframe do jogo para desligar o som
+            try {
+                gameFrame.contentWindow.postMessage({ type: 'sound', value: soundOn }, '*');
+            } catch (error) {
+                console.error('Erro ao enviar mensagem para o iframe:', error);
+            }
+        });
+    }
+    
+    // Carrega um jogo
+    function loadGame(gameUrl) {
+        if (loadingOverlay) loadingOverlay.style.display = 'flex';
+        
+        // Inicia o carregamento do jogo
+        gameFrame.src = gameUrl;
+        
+        // Detecta quando o jogo terminou de carregar
+        gameFrame.onload = function() {
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
+        };
+        
+        // Tratamento de erro de carregamento
+        gameFrame.onerror = function() {
+            if (loadingOverlay) {
+                const loadingText = loadingOverlay.querySelector('p');
+                if (loadingText) loadingText.textContent = 'Erro ao carregar o jogo. Tente novamente.';
+                
+                // Adiciona botão de tentar novamente
+                const retryButton = document.createElement('button');
+                retryButton.textContent = 'Tentar Novamente';
+                retryButton.className = 'retry-btn';
+                retryButton.onclick = function() {
+                    loadGame(gameUrl);
+                };
+                
+                // Remove botão anterior se existir
+                const existingRetryBtn = loadingOverlay.querySelector('.retry-btn');
+                if (existingRetryBtn) existingRetryBtn.remove();
+                
+                loadingOverlay.appendChild(retryButton);
+            }
+        };
+    }
+    
+    // Função para mudar para o próximo jogo
+    function nextGame() {
+        currentGameIndex = (currentGameIndex + 1) % availableGames.length;
+        changeGame(currentGameIndex);
+    }
+    
+    // Função para mudar para o jogo anterior
+    function prevGame() {
+        currentGameIndex = (currentGameIndex - 1 + availableGames.length) % availableGames.length;
+        changeGame(currentGameIndex);
+    }
+    
+    // Função para mudar o jogo atual
+    function changeGame(index) {
+        const game = availableGames[index];
+        updateGameInfo(game);
+        loadGame(game.url);
+        updateGameIndicators();
+    }
+    
+    // Atualiza os indicadores do carrossel
+    function updateGameIndicators() {
+        carouselDots.forEach((dot, index) => {
+            if (index === currentGameIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    // Função para atualizar as informações do jogo
+    function updateGameInfo(game) {
+        // Atualiza o título do jogo
+        const gameTitle = document.querySelector('.game-title-area h4');
+        if (gameTitle) gameTitle.textContent = game.title;
+        
+        // Atualiza os badges do jogo
+        const gameBadges = document.querySelector('.game-badges');
+        if (gameBadges) {
+            // Limpa os badges existentes
+            gameBadges.innerHTML = '';
+            
+            // Adiciona novos badges
+            const typeBadge = document.createElement('span');
+            typeBadge.className = 'game-badge';
+            typeBadge.innerHTML = `<i class="${game.icon}"></i> ${game.type}`;
+            gameBadges.appendChild(typeBadge);
+            
+            const htmlBadge = document.createElement('span');
+            htmlBadge.className = 'game-badge';
+            htmlBadge.innerHTML = '<i class="fab fa-html5"></i> HTML5';
+            gameBadges.appendChild(htmlBadge);
+        }
     }
 }
