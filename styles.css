@@ -1326,34 +1326,35 @@ section {
 
 .scroll-arrow {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     width: 40px;
     height: 40px;
-    background: rgba(15, 15, 15, 0.8);
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.8), rgba(255, 179, 71, 0.8));
+    border: none;
     color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 16px;
     cursor: pointer;
     z-index: 5;
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .scroll-arrow:hover {
-    background: rgba(255, 107, 0, 0.8);
+    background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(255, 179, 71, 1));
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
 }
 
 .prev {
-    left: 10px;
+    left: -15px;
 }
 
 .next {
-    right: 10px;
+    right: -15px;
 }
 
 /* Estilizando a barra de rolagem */
@@ -4561,11 +4562,11 @@ footer p {
 
 /* Estilo aprimorado para as setas de navegação */
 .scroll-arrow {
+    position: absolute;
     width: 40px;
     height: 40px;
-    background: rgba(30, 30, 30, 0.85);
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.8), rgba(255, 179, 71, 0.8));
     border: none;
-    border-radius: 50%;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -4574,15 +4575,13 @@ footer p {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 107, 0, 0.2);
-    position: absolute;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     top: 50%;
     transform: translateY(-50%);
 }
 
 .scroll-arrow:hover {
-    background: rgba(255, 107, 0, 0.8);
+    background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(255, 179, 71, 1));
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
 }
