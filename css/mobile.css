@@ -1,0 +1,683 @@
+/* Otimizações Mobile Adicionais */
+
+/* Menu Hambúrguer */
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    color: var(--color-light);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+/* Esconder overflow quando menu está aberto */
+body.menu-active {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Animações de carregamento mais leves */
+@media (max-width: 768px) {
+    /* Menu Mobile */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-main ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--color-darker);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px 30px;
+        transition: right 0.3s ease;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-main.menu-open ul {
+        right: 0;
+    }
+    
+    .nav-main ul li {
+        margin: 15px 0;
+        width: 100%;
+    }
+    
+    .nav-main ul li a {
+        padding: 10px 0;
+        width: 100%;
+        display: block;
+    }
+    
+    /* Ajuste Hero Section */
+    .hero {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 20px 0 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+    }
+    
+    .hero-content {
+        padding: 0 15px !important;
+        margin: 0 !important;
+        height: auto !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        margin: 0 0 5px 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        order: 1 !important;
+        position: relative !important;
+    }
+    
+    /* Ajusta o container visual para direção de coluna (foto acima, ícones abaixo) */
+    .hero-visual {
+        margin: 0 auto !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important; /* Volta para layout em coluna */
+        align-items: center !important;
+        justify-content: center !important;
+        order: 2 !important;
+        flex: none !important;
+        position: static !important;
+        gap: 5px !important; /* Espaço entre a foto e os ícones */
+    }
+    
+    /* Solução para a foto e ícones alinhados verticalmente */
+    .hero-visual .profile-frame {
+        width: 120px !important; /* Aumenta um pouco o tamanho da foto */
+        height: 120px !important;
+        margin: 5px auto 0 !important; /* Margem inferior zero */
+        position: relative !important;
+        z-index: 1 !important;
+        flex: 0 0 auto !important;
+    }
+    
+    .hero-visual .profile-photo {
+        width: 100% !important;
+        height: auto !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Corrige o frame laranja estranho */
+    .profile-decoration {
+        display: none !important;
+    }
+    
+    /* Sobrescreve o social-sidebar de hero.css para ficar horizontal abaixo da foto */
+    .hero-visual .social-sidebar {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important; /* Mantém icones em linha */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important; /* Espaço maior entre ícones */
+        margin: 8px 0 0 !important; /* Margem acima positiva */
+        padding: 0 !important;
+        height: auto !important;
+        background: transparent !important;
+        z-index: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    
+    .hero-visual .social-sidebar .sidebar-icon {
+        margin: 0 !important;
+        height: 32px !important; /* Ícones um pouco maiores */
+        width: 32px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background-color: var(--color-dark) !important;
+        color: var(--color-light) !important;
+        border-radius: 50% !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+        transform: scale(1) !important; /* Sem redução de escala */
+    }
+    
+    .hero-visual .social-sidebar .sidebar-icon:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+    }
+    
+    .social-connector {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    .hero-tagline {
+        margin: 5px auto 10px !important;
+        max-width: 90% !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .code-elements {
+        display: none !important;
+    }
+    
+    .pixel-elements {
+        opacity: 0.3 !important;
+    }
+    
+    /* Centraliza o título em mobile e ajusta o espaçamento */
+    .hero-text h1 {
+        margin-bottom: 10px !important; /* Aumentado de 0 para 10px para dar mais espaço */
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important; /* Adicionado para melhorar o espaçamento vertical do texto */
+        padding-bottom: 5px !important; /* Padding adicional para evitar corte */
+    }
+    
+    .hero-subtitle {
+        margin-top: 5px !important; /* Espaço adicional acima do subtítulo */
+        margin-bottom: 10px !important;
+        font-size: 1.1rem !important;
+        position: relative !important;
+        top: 3px !important; /* Move o subtítulo um pouco para baixo */
+    }
+    
+    /* Ajuste o botão de download */
+    .hero-cta .download-cv-btn {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Modifica a seta de scroll em mobile para ficar abaixo das redes sociais */
+    .scroll-down {
+        display: flex !important;
+        position: static !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 20px auto 10px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        z-index: 5 !important;
+    }
+    
+    .scroll-down a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-decoration: none !important;
+    }
+    
+    .scroll-arrow {
+        width: 15px !important;
+        height: 15px !important;
+        border-width: 0 4px 4px 0 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .scroll-text {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    /* Ajustes Portfolio */
+    #sobre-mim {
+        margin-top: 10px !important;
+    }
+    
+    /* Melhorias de espaçamento para a seção Sobre Mim */
+    .intro-section {
+        padding: 30px 0 !important;
+    }
+    
+    .section-container.about-container {
+        padding: 0 20px !important;
+    }
+    
+    .about-left {
+        margin-bottom: 25px !important;
+    }
+    
+    .about-right {
+        padding: 0 10px !important;
+    }
+    
+    .about-description p {
+        margin-bottom: 15px !important;
+        padding: 0 5px !important;
+        text-align: justify !important;
+    }
+    
+    .personal-info {
+        padding: 15px 5px !important;
+    }
+    
+    .info-row {
+        flex-direction: column !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .info-item {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+        padding: 5px !important;
+    }
+    
+    /* Melhorias no espaçamento para os cards de jogos em destaque */
+    .portfolio-category {
+        padding: 0 15px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .portfolio-category h3 {
+        margin-left: 5px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .featured-games-container {
+        margin: 0 5px !important;
+    }
+    
+    .featured-game-card {
+        margin-bottom: 25px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+    
+    .featured-game-card .featured-card-inner {
+        flex-direction: column;
+        padding: 0 !important;
+    }
+    
+    .featured-game-image {
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 12px 12px 0 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .featured-game-content {
+        width: 100%;
+        padding: 0 15px 15px !important;
+    }
+    
+    .project-tags {
+        margin-bottom: 10px !important;
+    }
+    
+    .project-tags span {
+        margin-right: 5px !important;
+        margin-bottom: 5px !important;
+        padding: 4px 8px !important;
+    }
+    
+    .featured-game-content h3 {
+        margin-bottom: 10px !important;
+        font-size: 1.4rem !important;
+    }
+    
+    .featured-game-content p {
+        margin-bottom: 15px !important;
+        text-align: justify !important;
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .project-tech {
+        padding-top: 10px !important;
+        margin-top: 10px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Ajustes para carrossel */
+    .portfolio-scroll {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .project-card {
+        scroll-snap-align: start;
+    }
+    
+    /* Otimizações de formulário */
+    input, textarea, button {
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+    
+    /* Touch targets mínimos para melhor experiência */
+    .sidebar-icon, 
+    .social-icons a,
+    .carousel-nav,
+    .control-btn,
+    .form-group input,
+    .form-group textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Ajusta tamanho do iframe de jogo */
+    #game-frame {
+        aspect-ratio: 16/9;
+        width: 100%;
+        height: auto;
+    }
+    
+    /* Esconder mobile-footer */
+    .mobile-footer {
+        display: none;
+    }
+    
+    /* Melhora a apresentação da seção Playables */
+    .game-player-section {
+        padding: 0 15px !important;
+        margin-bottom: 35px !important;
+    }
+    
+    /* Ajustes no card principal do player */
+    .game-player-card {
+        margin: 0 0 15px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    /* Cabeçalho do jogo */
+    .game-info-header {
+        padding: 12px 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    .game-title-area h4 {
+        font-size: 1.1rem !important;
+        margin: 0 0 5px !important;
+    }
+    
+    .game-badges {
+        display: flex !important;
+        gap: 5px !important;
+    }
+    
+    .game-badge {
+        padding: 3px 8px !important;
+        font-size: 0.7rem !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Área de controles do jogo */
+    .game-controls-toggle {
+        display: flex !important;
+        gap: 10px !important;
+    }
+    
+    .control-btn {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .control-btn:hover {
+        background-color: var(--laranja-vivo) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    /* Área do player de jogo */
+    .game-content-area {
+        position: relative !important;
+        padding-top: 56.25% !important; /* Proporção 16:9 */
+    }
+    
+    .game-player-wrapper {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    #embedded-game-player, 
+    #game-frame {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+    }
+    
+    /* Área de navegação do carrossel */
+    .game-carousel-controls {
+        padding: 15px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    .carousel-navigation {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important;
+    }
+    
+    .carousel-nav {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+    
+    .carousel-indicators {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+    
+    .carousel-dot {
+        width: 10px !important;
+        height: 10px !important;
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        border-radius: 50% !important;
+        transition: all 0.2s ease !important;
+        cursor: pointer !important;
+    }
+    
+    .carousel-dot.active {
+        background-color: var(--laranja-vivo) !important;
+        transform: scale(1.2) !important;
+    }
+    
+    /* Texto de introdução aos jogos */
+    .playables-intro {
+        margin-top: 20px !important;
+        padding: 0 15px !important;
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+        text-align: justify !important;
+    }
+    
+    /* Overlay de carregamento */
+    .game-loading-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(0, 0, 0, 0.7) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 2 !important;
+    }
+    
+    .loader {
+        width: 40px !important;
+        height: 40px !important;
+        border: 3px solid rgba(255, 255, 255, 0.2) !important;
+        border-top-color: var(--laranja-vivo) !important;
+        border-radius: 50% !important;
+        animation: spin 1s ease-in-out infinite !important;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    
+    /* Ajustes de ordem na seção de contato para mobile */
+    .contact-section {
+        padding: 40px 15px !important;
+    }
+    
+    .contact-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 25px !important;
+    }
+    
+    .contact-info {
+        order: 1 !important; /* Coloca a info de contato primeiro */
+        margin-bottom: 0 !important;
+        padding: 25px !important;
+        border-radius: 12px !important;
+        background-color: #f9f9f9 !important;
+    }
+    
+    .contact-form-container {
+        order: 2 !important; /* Coloca o formulário depois */
+        padding: 25px !important;
+        border-radius: 12px !important;
+    }
+    
+    .contact-info p {
+        margin-bottom: 20px !important;
+        text-align: justify !important;
+        line-height: 1.6 !important;
+    }
+    
+    .contact-details {
+        margin-bottom: 20px !important;
+    }
+    
+    .contact-item {
+        margin-bottom: 15px !important;
+    }
+    
+    .social-links-contact h3 {
+        margin-bottom: 15px !important;
+        font-size: 1.1rem !important;
+    }
+    
+    .social-links-contact .social-icons {
+        gap: 10px !important;
+    }
+    
+    .submit-btn {
+        width: 100% !important;
+        padding: 12px !important;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 576px) {
+    .hero-content {
+        padding: 5px 15px !important;
+        min-height: auto !important;
+    }
+    
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2 {
+        font-size: 1.6rem !important;
+    }
+    
+    .project-card {
+        width: 85%;
+        margin: 0 auto;
+    }
+    
+    .skill-free-item {
+        width: calc(33.33% - 20px);
+    }
+    
+    .contact-form-container, 
+    .contact-info {
+        padding: 20px 15px;
+    }
+    
+    .game-player-card {
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+}
+
+/* Otimizações de performance */
+@media (max-width: 768px) {
+    /* Reduz complexidade das animações */
+    .pixel {
+        animation-duration: 5s !important;
+    }
+    
+    /* Remove sombras complexas */
+    .project-card,
+    .skill-card,
+    .featured-game-card {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    /* Desativa animações não essenciais */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+} 

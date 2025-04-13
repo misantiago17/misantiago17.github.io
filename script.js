@@ -93,10 +93,26 @@ const nav = document.querySelector('.nav-main');
 const navSpacer = document.querySelector('.nav-spacer');
 const navHeight = nav?.offsetHeight || 0;
 
+// Detecção de dispositivo móvel para otimizações
+const isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.iOS());
+    }
+};
+
 // Efeito de digitação para o texto da hero section
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializa gerenciamento de memória e performance
     initPerformanceMonitoring();
+    
+    // Inicializa menu mobile
+    initMobileMenu();
     
     const typedTextElement = document.querySelector('.typed-text');
     
@@ -171,7 +187,114 @@ document.addEventListener('DOMContentLoaded', function() {
     enhanceAccessibility();
     fixScrollArrow();
     fixGameCards();
+    
+    // Otimizações para mobile
+    if (isMobile.any()) {
+        optimizeForMobile();
+    }
 });
+
+// Inicializa o menu mobile
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMain = document.querySelector('.nav-main');
+    const navLinks = document.querySelectorAll('.nav-main ul li a');
+    
+    if (menuToggle && navMain) {
+        // Toggle do menu ao clicar no botão hambúrguer
+        menuToggle.addEventListener('click', function() {
+            navMain.classList.toggle('menu-open');
+            document.body.classList.toggle('menu-active');
+            
+            // Alterna entre ícones de hambúrguer e X
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                if (navMain.classList.contains('menu-open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Fecha o menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMain.classList.remove('menu-open');
+                document.body.classList.remove('menu-active');
+                
+                // Restaura ícone hambúrguer
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Fecha o menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            if (navMain.classList.contains('menu-open') && 
+                !navMain.contains(event.target) && 
+                event.target !== menuToggle && 
+                !menuToggle.contains(event.target)) {
+                navMain.classList.remove('menu-open');
+                document.body.classList.remove('menu-active');
+                
+                // Restaura ícone hambúrguer
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+}
+
+// Otimizações específicas para mobile
+function optimizeForMobile() {
+    // Reduz a quantidade de elementos decorativos
+    const decorativeElements = document.querySelectorAll('.pixel-elements .pixel');
+    if (decorativeElements.length > 6) {
+        // Mantém apenas alguns elementos
+        for (let i = 6; i < decorativeElements.length; i++) {
+            decorativeElements[i].style.display = 'none';
+        }
+    }
+    
+    // Otimiza carregamento de imagens
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+    
+    // Simplifica animações
+    document.querySelectorAll('.animated, .fade-in, .slide-in').forEach(el => {
+        el.style.animationDuration = '0.5s';
+    });
+    
+    // Ajusta tamanho do iframe de jogo
+    const gameFrame = document.getElementById('game-frame');
+    if (gameFrame) {
+        gameFrame.style.height = 'auto';
+    }
+    
+    // Ajusta comportamento de scroll para melhor experiência touch
+    document.querySelectorAll('.portfolio-scroll').forEach(container => {
+        container.style.scrollBehavior = 'smooth';
+        container.style.webkitOverflowScrolling = 'touch';
+        
+        // Remove botões de scroll em dispositivos touch e deixa o scroll nativo
+        const scrollButtons = container.parentElement.querySelectorAll('.scroll-arrow');
+        scrollButtons.forEach(btn => {
+            btn.style.display = 'none';
+        });
+    });
+}
 
 // Monitoramento de performance
 function initPerformanceMonitoring() {
@@ -601,192 +724,101 @@ function setupHorizontalScroll(scrollContainerId) {
     const scrollContainer = document.getElementById(scrollContainerId);
     if (!scrollContainer) return;
     
-    const nextBtn = scrollContainer.parentElement.querySelector('.next');
-    const prevBtn = scrollContainer.parentElement.querySelector('.prev');
+    const prev = scrollContainer.parentElement.querySelector('.prev');
+    const next = scrollContainer.parentElement.querySelector('.next');
     
-    // Usa ResizeObserver para detectar mudanças no tamanho do container
-    if ('ResizeObserver' in window) {
-        const resizeObserver = new ResizeObserver(utils.debounce(() => {
-            updateScrollButtons();
-        }, 200));
-        
-        resizeObserver.observe(scrollContainer);
-    }
+    if (!prev || !next) return;
     
-    // Tamanho fixo para cada card para calcular a rolagem
-    const cardWidth = 320; // Largura aproximada de um card + gap
-    
-    // Obtém o número total de itens
-    const items = scrollContainer.querySelectorAll('.project-card');
-    
-    // Smooth scrolling para o container
-    scrollContainer.style.scrollBehavior = 'smooth';
-    
-    // Configuração melhorada para detectar quando o scroll não é mais possível
-    let isScrolling = false;
-    let scrollTimeout;
-    let currentPosition = 0;
-    
-    // Calculamos o número de itens visíveis dinamicamente
-    function getVisibleItems() {
-        return Math.max(1, Math.floor(scrollContainer.clientWidth / cardWidth));
-    }
-        
-        // Função para rolar até um índice específico
-    function scrollTo(position) {
-        isScrolling = true;
-        
-        // Suaviza o scroll para a posição desejada
-            scrollContainer.scrollTo({
-                left: position,
-                behavior: 'smooth'
-            });
-        
-        // Adiciona um timeout para resetar o estado de scrolling após a animação
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-            updateScrollButtons(); // Atualiza os botões após o scroll terminar
-        }, 500); // 500ms é aproximadamente o tempo da animação de scroll
-    }
-    
-    // Adiciona listener de scroll para atualizar os botões quando o usuário rola manualmente
-    scrollContainer.addEventListener('scroll', function() {
-        // Atualiza os botões enquanto o usuário está rolando
-        if (!isScrolling) {
-            updateScrollButtons();
+    // Detecta a largura da tela para saber quantos cards deslocar
+    const getScrollAmount = () => {
+        const width = window.innerWidth;
+        if (width <= 576) {
+            // Em mobile, move um card por vez (largura completa)
+            return scrollContainer.scrollWidth;
+        } else if (width <= 768) {
+            // Em tablets, move 2 cards por vez
+            return scrollContainer.querySelector('.project-card').offsetWidth * 2 + 20;
+        } else {
+            // Em desktop, move 3 cards por vez
+            return scrollContainer.querySelector('.project-card').offsetWidth * 3 + 40;
         }
-    });
+    };
     
-    // Função aprimorada para verificar o estado dos botões
-    function updateScrollButtons() {
-        if (!nextBtn || !prevBtn) return;
-        
-        const scrollLeft = scrollContainer.scrollLeft;
-        const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth - 5; // 5px margem de erro
-        
-        // Verifica se podemos rolar para esquerda (quando já rolou para direita)
-        if (scrollLeft <= 5) { // 5px margem de erro
-                prevBtn.style.setProperty('opacity', '0.4', 'important');
-                prevBtn.style.setProperty('pointer-events', 'none', 'important');
-                prevBtn.setAttribute('aria-disabled', 'true');
-            } else {
-                prevBtn.style.setProperty('opacity', '1', 'important');
-                prevBtn.style.setProperty('pointer-events', 'auto', 'important');
-                prevBtn.setAttribute('aria-disabled', 'false');
-            }
-            
-        // Verifica se podemos rolar para direita (quando ainda não chegou ao fim)
-        if (scrollLeft >= maxScrollLeft) {
-                nextBtn.style.setProperty('opacity', '0.4', 'important');
-                nextBtn.style.setProperty('pointer-events', 'none', 'important');
-                nextBtn.setAttribute('aria-disabled', 'true');
-            } else {
-                nextBtn.style.setProperty('opacity', '1', 'important');
-                nextBtn.style.setProperty('pointer-events', 'auto', 'important');
-                nextBtn.setAttribute('aria-disabled', 'false');
-            }
+    let scrollPosition = 0;
+    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    
+    function getVisibleItems() {
+        const items = scrollContainer.querySelectorAll('.project-card');
+        // Calcular o número de itens visíveis com base na largura da tela
+        return window.innerWidth <= 576 ? 1 : window.innerWidth <= 768 ? 2 : 3;
     }
     
-    // Botões touch-friendly para mobile
-    function makeTouchFriendly(button) {
-        if (!button) return;
-        
-        // Adiciona tratamento de touch events
-        button.addEventListener('touchstart', function() {
-            this.classList.add('active');
-        }, { passive: true });
-        
-        button.addEventListener('touchend', function() {
-            this.classList.remove('active');
-        }, { passive: true });
-        
-        // Aumenta a área de toque
-        button.style.minWidth = '44px';
-        button.style.minHeight = '44px';
-    }
-    
-    makeTouchFriendly(nextBtn);
-    makeTouchFriendly(prevBtn);
-    
-    // Verifica se há botões de navegação
-    if (nextBtn && prevBtn) {
-        // Configuração para o botão "próximo"
-        utils.addEvent(nextBtn, 'click', function() {
-            if (isScrolling) return;
-            
-            const visibleItems = getVisibleItems();
-            // Avança exatamente o número de itens visíveis
-            scrollTo(currentPosition + (visibleItems * cardWidth));
+    function scrollTo(position) {
+        scrollContainer.scrollTo({
+            left: position,
+            behavior: 'smooth'
         });
+        scrollPosition = position;
         
-        // Suporte para ativação por teclado
-        nextBtn.setAttribute('role', 'button');
-        nextBtn.setAttribute('aria-label', 'Próximos itens');
-        nextBtn.setAttribute('tabindex', '0');
-        nextBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                nextBtn.click();
-            }
-        });
-        
-        // Configuração para o botão "anterior"
-        utils.addEvent(prevBtn, 'click', function() {
-            if (isScrolling) return;
-            
-            const visibleItems = getVisibleItems();
-            // Retrocede exatamente o número de itens visíveis
-            scrollTo(currentPosition - (visibleItems * cardWidth));
-        });
-        
-        // Suporte para ativação por teclado
-        prevBtn.setAttribute('role', 'button');
-        prevBtn.setAttribute('aria-label', 'Itens anteriores');
-        prevBtn.setAttribute('tabindex', '0');
-        prevBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                prevBtn.click();
-            }
-        });
-        
-        // Atualiza o estado dos botões quando o usuário rola manualmente
-        scrollContainer.addEventListener('scroll', utils.throttle(() => {
-            if (!isScrolling) { // Apenas se não estiver em uma rolagem programada
-                currentPosition = scrollContainer.scrollLeft;
-                updateScrollButtons();
-            }
-        }, 100), { passive: true });
-        
-        // Verifica o estado inicial dos botões
+        // Atualizar estado dos botões após o scroll
         updateScrollButtons();
     }
     
-    // Atualiza scroll ao redimensionar
-    window.addEventListener('resize', utils.debounce(() => {
-        if (items.length > 0) {
-            updateScrollButtons();
-        }
-    }, 200), { passive: true });
-    
-    // Adiciona navegação por teclado para o contêiner de scroll
-    scrollContainer.setAttribute('tabindex', '0');
-    scrollContainer.setAttribute('role', 'region');
-    scrollContainer.setAttribute('aria-label', 'Carrossel de projetos');
-    
-    scrollContainer.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' && nextBtn && !nextBtn.getAttribute('aria-disabled') !== 'true') {
-            nextBtn.click();
-        } else if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.getAttribute('aria-disabled') !== 'true') {
-            prevBtn.click();
-        }
+    prev.addEventListener('click', function() {
+        const scrollAmount = getScrollAmount();
+        scrollPosition = Math.max(0, scrollPosition - scrollAmount);
+        scrollTo(scrollPosition);
     });
     
-    return {
-        container: scrollContainer,
-        updateButtons: updateScrollButtons
-    };
+    next.addEventListener('click', function() {
+        const scrollAmount = getScrollAmount();
+        scrollPosition = Math.min(maxScroll, scrollPosition + scrollAmount);
+        scrollTo(scrollPosition);
+    });
+    
+    // Atualiza botões de acordo com a posição do scroll
+    function updateScrollButtons() {
+        prev.style.opacity = scrollPosition <= 0 ? '0.5' : '1';
+        prev.style.pointerEvents = scrollPosition <= 0 ? 'none' : 'auto';
+        
+        next.style.opacity = scrollPosition >= maxScroll ? '0.5' : '1';
+        next.style.pointerEvents = scrollPosition >= maxScroll ? 'none' : 'auto';
+    }
+    
+    // Inicializa o estado dos botões
+    updateScrollButtons();
+    
+    // Recalcula os valores quando a janela é redimensionada
+    window.addEventListener('resize', function() {
+        const newMaxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        
+        // Se a posição atual for maior que o novo máximo, ajusta
+        if (scrollPosition > newMaxScroll) {
+            scrollPosition = newMaxScroll;
+            scrollTo(scrollPosition);
+        }
+        
+        maxScroll = newMaxScroll;
+        updateScrollButtons();
+    });
+    
+    // Melhorias para dispositivos móveis
+    function makeTouchFriendly(button) {
+        // Evita o comportamento padrão de pressionar e segurar
+        button.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.click();
+        }, { passive: false });
+        
+        // Aumenta a área de toque para melhor experiência em dispositivos móveis
+        if (window.innerWidth <= 768) {
+            button.style.width = '44px';
+            button.style.height = '44px';
+        }
+    }
+    
+    makeTouchFriendly(prev);
+    makeTouchFriendly(next);
 }
 
 // Verifica quando a seção de estatísticas está visível e inicia a animação
@@ -1593,7 +1625,7 @@ function fixScrollArrow() {
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
                 margin: 0 10px !important;
                 transform: none !important;
                 overflow: visible !important;
@@ -1660,7 +1692,7 @@ function fixScrollArrow() {
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
                 margin: 0 10px !important;
                 transform: none !important;
                 overflow: visible !important;
@@ -1729,34 +1761,40 @@ function fixScrollArrow() {
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
-                width: 50px !important;
-                height: 50px !important;
+                width: 45px !important;
+                height: 45px !important;
                 aspect-ratio: 1 / 1 !important;
                 border-radius: 50% !important;
                 background-color: #333333 !important;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
                 cursor: pointer !important;
-                margin: 0 10px !important;
                 border: none !important;
                 padding: 0 !important;
-                position: relative !important;
-                z-index: 5 !important;
+                position: absolute !important;
+                z-index: 10 !important;
                 transform: none !important;
                 overflow: hidden !important;
                 flex-shrink: 0 !important;
                 flex-grow: 0 !important;
                 transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
             `;
             
-            // Aplica o estilo diretamente ao elemento DOM para garantir que não seja sobrescrito
-            prevButton.style.cssText = buttonStyle;
-            nextButton.style.cssText = buttonStyle;
+            // Estilos específicos para cada botão
+            prevButton.style.cssText = buttonStyle + `
+                left: 10px !important;
+            `;
+            
+            nextButton.style.cssText = buttonStyle + `
+                right: 10px !important;
+            `;
             
             // Criar ícones FontAwesome com cores claras
             const prevIcon = document.createElement('i');
             prevIcon.className = 'fas fa-chevron-left';
             prevIcon.style.cssText = `
-                font-size: 24px !important;
+                font-size: 18px !important;
                 color: #F5CB40 !important;
                 transform: none !important;
                 line-height: 1 !important;
@@ -1765,7 +1803,7 @@ function fixScrollArrow() {
             const nextIcon = document.createElement('i');
             nextIcon.className = 'fas fa-chevron-right';
             nextIcon.style.cssText = `
-                font-size: 24px !important;
+                font-size: 18px !important;
                 color: #F5CB40 !important;
                 transform: none !important;
                 line-height: 1 !important;
@@ -1785,19 +1823,38 @@ function fixScrollArrow() {
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
-                    width: 50px !important;
-                    height: 50px !important;
+                    width: 45px !important;
+                    height: 45px !important;
                     aspect-ratio: 1 / 1 !important;
                     border-radius: 50% !important;
                     flex-shrink: 0 !important;
                     flex-grow: 0 !important;
                     padding: 0 !important;
+                    position: absolute !important;
+                    top: 50% !important;
+                    transform: translateY(-50%) !important;
+                    z-index: 10 !important;
+                }
+                
+                .scroll-arrow.prev {
+                    left: 10px !important;
+                }
+                
+                .scroll-arrow.next {
+                    right: 10px !important;
+                }
+                
+                .portfolio-scroll-container {
+                    position: relative !important;
+                    padding: 0 60px !important;
+                    margin: 20px 0 !important;
+                    overflow: visible !important;
                 }
             `;
             document.head.appendChild(styleCircular);
             
-            // Adicionar no início e fim do container
-            pessoaisContainer.insertBefore(prevButton, pessoaisContainer.firstChild);
+            // Adicionar no container
+            pessoaisContainer.appendChild(prevButton);
             pessoaisContainer.appendChild(nextButton);
             
             // Recriar os event listeners
@@ -1833,28 +1890,28 @@ function fixScrollArrow() {
             prevButton.addEventListener('mouseenter', function() {
                 this.style.backgroundColor = '#444444';
                 this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.4)';
-                this.style.transform = 'translateY(-2px)';
+                this.style.transform = 'translateY(-50%) scale(1.1)';
                 prevIcon.style.color = '#FFFFFF';
             });
             
             prevButton.addEventListener('mouseleave', function() {
                 this.style.backgroundColor = '#333333';
                 this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
-                this.style.transform = 'none';
+                this.style.transform = 'translateY(-50%)';
                 prevIcon.style.color = '#F5CB40';
             });
             
             nextButton.addEventListener('mouseenter', function() {
                 this.style.backgroundColor = '#444444';
                 this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.4)';
-                this.style.transform = 'translateY(-2px)';
+                this.style.transform = 'translateY(-50%) scale(1.1)';
                 nextIcon.style.color = '#FFFFFF';
             });
             
             nextButton.addEventListener('mouseleave', function() {
                 this.style.backgroundColor = '#333333';
                 this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
-                this.style.transform = 'none';
+                this.style.transform = 'translateY(-50%)';
                 nextIcon.style.color = '#F5CB40';
             });
             
@@ -1935,6 +1992,16 @@ function fixScrollArrow() {
         }
     `;
     document.head.appendChild(style);
+
+    // Adicionar estilos para o container pai também (portfolio-category)
+    const styleContainer = document.createElement('style');
+    styleContainer.textContent = `
+        .portfolio-category {
+            overflow: visible !important;
+            padding: 0 5px !important;
+        }
+    `;
+    document.head.appendChild(styleContainer);
 }
 
 // Adiciona estilos para os cartões de jogos
@@ -2273,4 +2340,17 @@ function fixGameCards() {
     `;
     
     document.head.appendChild(stylePlayButton);
+}
+
+// Registrar Service Worker para funcionalidade offline
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registrado com sucesso:', registration.scope);
+            })
+            .catch(error => {
+                console.log('Falha ao registrar Service Worker:', error);
+            });
+    });
 }

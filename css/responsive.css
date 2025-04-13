@@ -481,4 +481,16 @@
     .nav-main li:last-child a {
         animation: none;
     }
+}
+
+/* Forçando as configurações corretas do carrossel de portfólio */
+@media (min-width: 992px) {
+    .portfolio-scroll {
+        width: 900px !important;
+    }
+    
+    .project-card {
+        width: 280px !important;
+        flex: 0 0 280px !important;
+    }
 } 

@@ -6,6 +6,13 @@
     overflow: hidden;
 }
 
+/* Garantir que todos os elementos usem border-box para cálculos de largura consistentes */
+.portfolio-section *,
+.portfolio-section *::before,
+.portfolio-section *::after {
+    box-sizing: border-box;
+}
+
 .portfolio-section::before {
     content: '';
     position: absolute;
@@ -126,6 +133,7 @@
 .portfolio-category {
     margin-bottom: 60px;
     position: relative;
+    z-index: 2;
 }
 
 .portfolio-category h3 {
@@ -145,15 +153,19 @@
 
 /* Portfolio Cards */
 .project-card {
-    flex: 0 0 300px;
-    margin: 10px;
+    flex: 0 0 280px !important;
+    margin: 10px 0 !important;
     border-radius: 10px;
     overflow: hidden;
     background: rgba(30, 30, 30, 0.8);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    width: 280px !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
 .project-card:hover {
@@ -168,6 +180,7 @@
     display: flex;
     flex-direction: column;
     border-radius: inherit;
+    box-sizing: border-box;
 }
 
 .pontuais-type {
@@ -335,14 +348,17 @@
 
 /* Nova estrutura de categorias do portfólio */
 .portfolio-scroll {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden; /* Esconder o scroll, mas manter a capacidade de scroll via JavaScript */
-    gap: 20px;
-    padding: 15px 5px;
-    position: relative;
-    scroll-behavior: smooth;
-    transition: transform 0.3s ease;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+    gap: 20px !important;
+    padding: 15px 0 !important;
+    position: relative !important;
+    scroll-behavior: smooth !important;
+    transition: transform 0.3s ease !important;
+    width: 900px !important; /* Meio termo entre 880px e 940px */
+    margin: 0 auto !important;
+    max-width: 100% !important;
 }
 
 /* Ocultar completamente as barras de scroll */
@@ -352,35 +368,26 @@
     display: none;
 }
 
-.portfolio-scroll::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.portfolio-scroll::-webkit-scrollbar-thumb {
-    background: transparent;
-}
-
-.portfolio-scroll::-webkit-scrollbar-thumb:hover {
-    background: transparent;
-}
-
 /* Melhorar o destaque das setas de navegação */
 .portfolio-scroll-container {
-    position: relative;
-    margin: 0 -5px;
-    overflow: hidden;
+    position: relative !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+    max-width: 1060px !important;
+    padding: 0 60px !important;
+    box-sizing: border-box !important;
 }
 
 .scroll-arrow {
     position: absolute;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, rgba(255, 107, 0, 0.8), rgba(255, 179, 71, 0.8));
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(255, 179, 71, 0.9));
     border: none;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
-    z-index: 5;
+    z-index: 10;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -388,6 +395,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     top: 50%;
     transform: translateY(-50%);
+    border-radius: 50%;
 }
 
 .scroll-arrow:hover {
@@ -397,51 +405,99 @@
 }
 
 .prev {
-    left: -15px;
+    left: 10px;
 }
 
 .next {
-    right: -15px;
-}
-
-/* Estilizando a barra de rolagem */
-.portfolio-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-
-.portfolio-scroll::-webkit-scrollbar-track {
-    background: rgba(30, 30, 30, 0.5);
-    border-radius: 10px;
-}
-
-.portfolio-scroll::-webkit-scrollbar-thumb {
-    background-color: #F5CB40;
-    border-radius: 10px;
-    border: 2px solid rgba(30, 30, 30, 0.5);
-}
-
-.portfolio-scroll::-webkit-scrollbar-thumb:hover {
-    background-color: #FF6B47;
+    right: 10px;
 }
 
 /* Responsividade para telas menores */
+@media (max-width: 992px) {
+    .portfolio-filters ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .portfolio-filters li {
+        margin: 5px;
+    }
+    
+    .portfolio-scroll {
+        width: 620px; /* Ajustado para 2 cards + gap + possíveis bordas */
+    }
+    
+    .portfolio-scroll-container {
+        max-width: 760px; /* Ajustado para acomodar a nova largura */
+    }
+}
+
 @media (max-width: 768px) {
+    .portfolio-header h2 {
+        font-size: 2rem;
+    }
+    
     .portfolio-category h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .project-card {
-        width: 250px;
+        flex: 0 0 280px;
+        width: 280px;
+        margin: 10px 0;
     }
     
     .project-image {
         height: 150px;
     }
+    
+    .portfolio-scroll {
+        width: 600px; /* 2 cards + 1 gap */
+    }
+}
+
+@media (max-width: 650px) {
+    .portfolio-scroll {
+        width: 280px; /* 1 card */
+    }
+    
+    .portfolio-scroll-container {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-intro {
+        font-size: 0.9rem;
+    }
+    
+    .project-card {
+        flex: 0 0 280px;
+        margin: 10px 0;
+        width: 280px;
+    }
+    
+    .portfolio-scroll {
+        width: 280px; /* Single card for mobile */
+    }
+    
+    .game-modal-content {
+        padding: 15px;
+    }
+    
+    .control-tip {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
 }
 
 @media (max-width: 480px) {
     .project-card {
-        width: 220px;
+        width: 280px;
     }
     
     .project-image {
@@ -593,7 +649,7 @@
     left: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 1;
+    z-index: -1;
     opacity: 1;
 }
 
@@ -648,64 +704,35 @@
     }
 }
 
+/* Posições individuais para cada partícula */
+.game-particles .particle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.game-particles .particle:nth-child(2) { top: 80%; left: 20%; animation-delay: 1s; }
+.game-particles .particle:nth-child(3) { top: 40%; left: 85%; animation-delay: 2s; }
+.game-particles .particle:nth-child(4) { top: 25%; left: 75%; animation-delay: 0.5s; }
+.game-particles .particle:nth-child(5) { top: 65%; left: 60%; animation-delay: 1.5s; }
+.game-particles .particle:nth-child(6) { top: 35%; left: 30%; animation-delay: 3s; }
+.game-particles .particle:nth-child(7) { top: 70%; left: 80%; animation-delay: 2.5s; }
+.game-particles .particle:nth-child(8) { top: 10%; left: 40%; animation-delay: 1.2s; }
+.game-particles .particle:nth-child(9) { top: 55%; left: 15%; animation-delay: 0.8s; }
+.game-particles .particle:nth-child(10) { top: 20%; left: 65%; animation-delay: 2.2s; }
+.game-particles .particle:nth-child(11) { top: 85%; left: 45%; animation-delay: 1.7s; }
+.game-particles .particle:nth-child(12) { top: 30%; left: 5%; animation-delay: 3.2s; }
+.game-particles .particle:nth-child(13) { top: 75%; left: 25%; animation-delay: 0.3s; }
+.game-particles .particle:nth-child(14) { top: 18%; left: 88%; animation-delay: 1.9s; }
+.game-particles .particle:nth-child(15) { top: 60%; left: 72%; animation-delay: 2.7s; }
+.game-particles .particle:nth-child(16) { top: 45%; left: 92%; animation-delay: 0.6s; }
+.game-particles .particle:nth-child(17) { top: 22%; left: 35%; animation-delay: 3.5s; }
+.game-particles .particle:nth-child(18) { top: 90%; left: 10%; animation-delay: 1.3s; }
+.game-particles .particle:nth-child(19) { top: 15%; left: 50%; animation-delay: 2.9s; }
+.game-particles .particle:nth-child(20) { top: 50%; left: 28%; animation-delay: 0.9s; }
+.game-particles .particle:nth-child(21) { top: 82%; left: 63%; animation-delay: 2.3s; }
+.game-particles .particle:nth-child(22) { top: 38%; left: 42%; animation-delay: 1.6s; }
+.game-particles .particle:nth-child(23) { top: 5%; left: 78%; animation-delay: 3.8s; }
+.game-particles .particle:nth-child(24) { top: 68%; left: 5%; animation-delay: 2.1s; }
+
 /* Hover effects for portfolio items */
 .project-card {
     cursor: pointer;
-}
-
-@media (max-width: 992px) {
-    .portfolio-filters ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .portfolio-filters li {
-        margin: 5px;
-    }
-}
-
-@media (max-width: 768px) {
-    .portfolio-header h2 {
-        font-size: 2rem;
-    }
-    
-    .portfolio-category h3 {
-        font-size: 1.4rem;
-    }
-    
-    .project-card {
-        flex: 0 0 280px;
-    }
-    
-    .project-image {
-        height: 150px;
-    }
-}
-
-@media (max-width: 576px) {
-    .portfolio-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .portfolio-intro {
-        font-size: 0.9rem;
-    }
-    
-    /* Portfolio filters removed */
-    
-    .project-card {
-        flex: 0 0 100%;
-        margin: 10px 0;
-    }
-    
-    .game-modal-content {
-        padding: 15px;
-    }
-    
-    .control-tip {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-    }
 }
 
 /* Game Player Section */
@@ -725,4 +752,44 @@
     background-size: cover;
     opacity: 0.05;
     z-index: -1;
+}
+
+/* Regras específicas para a seção de jogos pessoais */
+.pessoais-container {
+    position: relative !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+    max-width: 1060px !important;
+    padding: 0 60px !important;
+    box-sizing: border-box !important;
+}
+
+.pessoais-scroll {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+    gap: 20px !important;
+    padding: 15px 0 !important;
+    position: relative !important;
+    scroll-behavior: smooth !important;
+    transition: transform 0.3s ease !important;
+    width: 900px !important; /* Meio termo entre 880px e 940px */
+    margin: 0 auto !important;
+    max-width: 100% !important;
+}
+
+.pessoais-container .project-card {
+    flex: 0 0 280px !important;
+    margin: 10px 0 !important;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    width: 280px !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    border: none !important;
 } 
