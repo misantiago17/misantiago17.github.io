@@ -1,0 +1,116 @@
+/* Navegação principal */
+.nav-main {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+}
+
+.nav-main.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nav-main ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-main li {
+    display: inline-block;
+}
+
+.nav-main a {
+    color: var(--texto-principal);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-main a:hover, 
+.nav-main a.active {
+    color: var(--laranja-vivo);
+    background-color: transparent;
+    transform: translateY(0);
+}
+
+/* Estilo especial para o botão de contato na navegação */
+.nav-main li:last-child a {
+    background-color: var(--laranja-vivo);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(240, 89, 19, 0.3);
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 4px 10px rgba(240, 89, 19, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 15px rgba(240, 89, 19, 0.5);
+    }
+    100% {
+        box-shadow: 0 4px 10px rgba(240, 89, 19, 0.3);
+    }
+}
+
+/* Desativa animações para usuários que preferem reduzir o movimento */
+@media (prefers-reduced-motion: reduce) {
+    .nav-main li:last-child a {
+        animation: none;
+    }
+}
+
+.nav-main li:last-child a i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.nav-main li:last-child a:hover {
+    background-color: var(--laranja);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(240, 89, 19, 0.4);
+}
+
+.nav-main li:last-child a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s ease;
+}
+
+.nav-main li:last-child a:hover::before {
+    left: 100%;
+}
+
+/* Adiciona um espaçador quando a navegação ficar fixa */
+.nav-spacer {
+    display: block;
+    height: 80px;
+} 

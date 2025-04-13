@@ -1,0 +1,67 @@
+/* Footer styles */
+footer {
+    background-color: var(--fundo-container);
+    color: var(--texto-secundario);
+    padding: 30px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.03);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* Botão voltar ao topo */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--laranja-vivo);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    box-shadow: 0 5px 15px rgba(240, 89, 19, 0.25);
+    z-index: 99;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--laranja);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(240, 89, 19, 0.4);
+}
+
+.back-to-top i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 20px;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+} 

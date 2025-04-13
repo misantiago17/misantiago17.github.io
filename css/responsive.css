@@ -1,0 +1,484 @@
+/* Media queries para responsividade */
+
+/* Large devices (desktop) */
+@media (max-width: 1400px) {
+    .skills-showcase {
+        padding: 60px 40px;
+    }
+    
+    .skills-category {
+        width: calc(33.333% - 40px);
+        margin: 0 20px 40px;
+    }
+}
+
+/* Medium devices (tablets) */
+@media (max-width: 1200px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skill-card {
+        padding: 30px 25px;
+    }
+}
+
+/* Small devices (landscape phones) */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        margin-bottom: 60px;
+        order: 2;
+    }
+    
+    .hero-tagline {
+        max-width: 90%;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.8rem;
+        height: auto;
+    }
+    
+    .hero-visual {
+        order: 1;
+        margin-bottom: 40px;
+    }
+    
+    .profile-frame {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .social-sidebar {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-top: 40px;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .sidebar-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .social-connector {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .about-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .about-left {
+        width: 100%;
+    }
+    
+    .about-right {
+        width: 100%;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .portfolio-filters ul {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .portfolio-filters li {
+        margin: 0 10px 10px 0;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        order: 2;
+    }
+    
+    .contact-form-container {
+        order: 1;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+    
+    .game-content-area {
+        flex-direction: column;
+    }
+    
+    .game-player-wrapper {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .game-info-sidebar {
+        width: 100%;
+    }
+    
+    .playables-description {
+        padding-left: 0;
+    }
+    
+    .skills-showcase-free {
+        padding: 60px 20px;
+    }
+    
+    .skills-items-container {
+        gap: 20px;
+    }
+    
+    .skill-free-item {
+        width: calc(20% - 20px);
+    }
+    
+    .hex-skill {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Extra small devices (portrait phones) */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .hero-tagline {
+        font-size: 1rem;
+    }
+    
+    .skill-card {
+        padding: 25px 20px;
+    }
+    
+    .skill-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .skill-item {
+        padding: 8px 12px;
+        margin: 5px;
+    }
+    
+    .skill-item img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .skill-item i {
+        font-size: 18px;
+    }
+    
+    .portfolio-filters li {
+        padding: 5px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .project-card {
+        width: calc(50% - 15px);
+    }
+    
+    .project-image {
+        height: 150px;
+    }
+    
+    .portfolio-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .portfolio-category h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-section {
+        padding: 40px 20px;
+    }
+    
+    .contact-form-container,
+    .contact-info {
+        padding: 25px;
+    }
+    
+    .submit-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+        box-shadow: 0 5px 10px rgba(240, 89, 19, 0.2);
+    }
+    
+    .scroll-down {
+        bottom: 20px;
+    }
+    
+    .scroll-arrow {
+        width: 25px;
+        height: 40px;
+        border-width: 1px;
+    }
+    
+    .scroll-text {
+        font-size: 10px;
+    }
+    
+    .skills-showcase {
+        padding: 50px 20px;
+    }
+    
+    .skills-category {
+        width: calc(50% - 40px);
+    }
+    
+    .category-header i {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .category-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .hex-container {
+        gap: 15px;
+    }
+    
+    .skills-showcase-free {
+        padding: 40px 15px;
+    }
+    
+    .skills-category-title {
+        margin-bottom: 25px;
+    }
+    
+    .skills-category-title i {
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+    
+    .skills-category-title h3 {
+        font-size: 1.3rem;
+    }
+    
+    .skills-items-container {
+        gap: 15px;
+    }
+    
+    .featured-game-container {
+        padding: 20px;
+    }
+    
+    .game-info-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .carousel-nav {
+        margin-top: 15px;
+    }
+    
+    .game-title-area h4 {
+        font-size: 1.2rem;
+    }
+    
+    .game-badge {
+        font-size: 0.7rem;
+    }
+    
+    .scroll-arrow {
+        width: 30px;
+        height: 30px;
+    }
+    
+    footer {
+        padding: 30px 0;
+    }
+    
+    .back-to-top {
+        right: 15px;
+        bottom: 15px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Extra extra small devices */
+@media (max-width: 576px) {
+    .info-row {
+        flex-direction: column;
+    }
+    
+    .info-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-showcase-free {
+        padding: 30px 10px;
+    }
+    
+    .skills-section {
+        margin-bottom: 40px;
+    }
+    
+    .skills-items-container {
+        gap: 10px;
+    }
+    
+    .skill-free-item {
+        width: calc(33.333% - 10px);
+    }
+    
+    .hex-skill {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .hex-skill img, 
+    .hex-skill .unity-icon img, 
+    .hex-skill .unreal-icon img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .hex-skill i {
+        font-size: 22px;
+    }
+    
+    .skill-name {
+        font-size: 0.8rem;
+    }
+    
+    .portfolio-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-intro {
+        font-size: 0.9rem;
+    }
+    
+    .project-card {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .game-modal-content {
+        padding: 50px 15px 15px;
+    }
+    
+    .control-tip {
+        font-size: 0.8rem;
+        margin: 0 5px 10px;
+    }
+    
+    .playables-description {
+        font-size: 0.9rem;
+    }
+    
+    .playables-intro {
+        padding: 40px 20px;
+    }
+    
+    .game-info-header {
+        margin-bottom: 15px;
+    }
+    
+    .carousel-indicators {
+        margin-top: 10px;
+    }
+    
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-intro {
+        font-size: 0.9rem;
+    }
+    
+    .project-card {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .game-modal-content {
+        padding: 50px 15px 15px;
+    }
+    
+    .control-tip {
+        font-size: 0.8rem;
+        margin: 0 5px 10px;
+    }
+    
+    .playables-description {
+        font-size: 0.9rem;
+    }
+    
+    .hex-container {
+        gap: 10px;
+    }
+    
+    .hex-item {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .hex-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .hex-label {
+        font-size: 0.7rem;
+        margin-top: 8px;
+    }
+    
+    .scroll-arrow {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Desativa animações para usuários que preferem reduzir o movimento */
+@media (prefers-reduced-motion: reduce) {
+    .nav-main li:last-child a {
+        animation: none;
+    }
+} 

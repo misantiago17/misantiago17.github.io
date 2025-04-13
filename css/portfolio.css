@@ -1,0 +1,728 @@
+/* Portfolio Section */
+.portfolio-section {
+    position: relative;
+    padding: 100px 0;
+    background-color: #121212;
+    overflow: hidden;
+}
+
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: 0;
+}
+
+/* Portfolio Header */
+.portfolio-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 5;
+}
+
+.portfolio-header h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.portfolio-header h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b00, #ffb347);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.portfolio-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #aaaaaa;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.blinker {
+    display: inline-block;
+    color: #ff6b00;
+    animation: blink 1s infinite;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+/* Portfolio Filters */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 5;
+}
+
+.portfolio-filters ul {
+    display: flex;
+    list-style: none;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.portfolio-filters li {
+    padding: 8px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-filters li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.2), rgba(255, 179, 71, 0.2));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.portfolio-filters li:hover {
+    color: #ffffff;
+}
+
+.portfolio-filters li:hover::before {
+    transform: translateX(0);
+}
+
+.portfolio-filters li.filter-active {
+    background: linear-gradient(90deg, #ff6b00, #ffb347);
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+}
+
+/* Portfolio Categories */
+.portfolio-category {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.portfolio-category h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    border-left: 4px solid #ff6b00;
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-category h3 i {
+    margin-right: 10px;
+    color: #ff6b00;
+}
+
+/* Portfolio Cards */
+.project-card {
+    flex: 0 0 300px;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-inner {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+}
+
+.pontuais-type {
+    border-bottom: 3px solid #ff6b00;
+}
+
+.playables-type {
+    border-bottom: 3px solid #3498db;
+}
+
+.pessoais-type {
+    border-bottom: 3px solid #9b59b6;
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+/* Melhorando a centralização do conteúdo do overlay */
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.game-engine {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.project-link {
+    background: rgba(255, 107, 0, 0.8);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background: rgba(255, 107, 0, 1);
+    transform: scale(1.1);
+}
+
+.play-now {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.play-now:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.project-tags span {
+    display: inline-block;
+    background: rgba(255, 107, 0, 0.2);
+    color: #ff6b00;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.7em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.project-content h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.project-content p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.project-tech {
+    display: flex;
+    margin-top: auto;
+}
+
+.tech-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.tech-icon:hover {
+    background: rgba(255, 107, 0, 0.7);
+    color: white;
+}
+
+/* Nova estrutura de categorias do portfólio */
+.portfolio-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden; /* Esconder o scroll, mas manter a capacidade de scroll via JavaScript */
+    gap: 20px;
+    padding: 15px 5px;
+    position: relative;
+    scroll-behavior: smooth;
+    transition: transform 0.3s ease;
+}
+
+/* Ocultar completamente as barras de scroll */
+.portfolio-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.portfolio-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+}
+
+/* Melhorar o destaque das setas de navegação */
+.portfolio-scroll-container {
+    position: relative;
+    margin: 0 -5px;
+    overflow: hidden;
+}
+
+.scroll-arrow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.8), rgba(255, 179, 71, 0.8));
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.scroll-arrow:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(255, 179, 71, 1));
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
+}
+
+.prev {
+    left: -15px;
+}
+
+.next {
+    right: -15px;
+}
+
+/* Estilizando a barra de rolagem */
+.portfolio-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-track {
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 10px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+    background-color: #F5CB40;
+    border-radius: 10px;
+    border: 2px solid rgba(30, 30, 30, 0.5);
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #FF6B47;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .portfolio-category h3 {
+        font-size: 1.5rem;
+    }
+    
+    .project-card {
+        width: 250px;
+    }
+    
+    .project-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        width: 220px;
+    }
+    
+    .project-image {
+        height: 130px;
+    }
+    
+    .project-content {
+        padding: 15px;
+    }
+    
+    .project-content h3 {
+        font-size: 1rem;
+    }
+    
+    .project-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Game modal */
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.game-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-modal.closing {
+    opacity: 0;
+}
+
+.game-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.7);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-modal.active .game-modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.close-modal:hover {
+    background: rgba(255, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+.game-info {
+    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+}
+
+.game-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #ff6b00;
+}
+
+.game-info p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+#game-display {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 5px;
+    overflow: hidden;
+    background: #000;
+}
+
+#game-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.control-tip {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.control-tip i {
+    margin-right: 5px;
+    color: #ff6b00;
+}
+
+/* Game particles */
+.game-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 1;
+}
+
+.particle {
+    position: absolute;
+    animation: float 15s infinite ease-in-out;
+    opacity: 0.5;
+}
+
+.pixel-particle {
+    width: 8px;
+    height: 8px;
+    background-color: #ff6b00;
+}
+
+.circle-particle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #3498db;
+}
+
+.triangle-particle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 17px solid #9b59b6;
+}
+
+.square-particle {
+    width: 12px;
+    height: 12px;
+    background-color: #2ecc71;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(10px) translateX(-15px) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-15px) translateX(15px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+}
+
+/* Hover effects for portfolio items */
+.project-card {
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    .portfolio-filters ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .portfolio-filters li {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-header h2 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-category h3 {
+        font-size: 1.4rem;
+    }
+    
+    .project-card {
+        flex: 0 0 280px;
+    }
+    
+    .project-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-intro {
+        font-size: 0.9rem;
+    }
+    
+    /* Portfolio filters removed */
+    
+    .project-card {
+        flex: 0 0 100%;
+        margin: 10px 0;
+    }
+    
+    .game-modal-content {
+        padding: 15px;
+    }
+    
+    .control-tip {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+
+/* Game Player Section */
+.game-player-section {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.game-player-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('playables/game-bg.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.05;
+    z-index: -1;
+} 

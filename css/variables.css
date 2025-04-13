@@ -1,0 +1,17 @@
+/* Cores da paleta atualizada */
+:root {
+    /* Cores principais refinadas */
+    --amarelo: #F5CB40;      
+    --laranja: #F18805;      
+    --verde: #B1B835;        
+    --laranja-vivo: #F05913; 
+    
+    /* Cores funcionais */
+    --fundo-pagina: #FFFCF7;
+    --fundo-container: #FFFFFF;
+    --texto-principal: #333333;
+    --texto-secundario: #555555;
+    --texto-claro: #FFFFFF;
+    --sombra: rgba(0, 0, 0, 0.08);
+    --sombra-destacada: rgba(241, 136, 5, 0.15);
+} 
