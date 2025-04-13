@@ -9,6 +9,151 @@
     background-color: var(--fundo-pagina);
     overflow: hidden;
     margin: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(245, 203, 64, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(177, 184, 53, 0.1) 0%, transparent 30%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(0deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b00' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Elementos geométricos decorativos */
+.hero .geometric-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.geometric-shape {
+    position: absolute;
+    opacity: 0.1;
+    border: 2px solid #ff6b00;
+}
+
+.square {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    top: 10%;
+    left: 5%;
+    animation: float-slow 15s ease-in-out infinite;
+}
+
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    bottom: 15%;
+    right: 8%;
+    animation: float-slow 18s ease-in-out infinite 2s;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86px solid rgba(255, 107, 0, 0.1);
+    top: 70%;
+    left: 10%;
+    animation: float-slow 20s ease-in-out infinite 1s;
+}
+
+.cross {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 15%;
+    position: absolute;
+    animation: float-slow 17s ease-in-out infinite 3s;
+}
+
+.cross::before,
+.cross::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(255, 107, 0, 0.2);
+}
+
+.cross::before {
+    width: 100%;
+    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cross::after {
+    width: 8px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes float-slow {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0);
+    }
+    25% {
+        transform: translate(15px, -15px) rotate(5deg);
+    }
+    50% {
+        transform: translate(0, 15px) rotate(0);
+    }
+    75% {
+        transform: translate(-15px, 0) rotate(-5deg);
+    }
+}
+
+.pixel {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ff6b00;
+    border-radius: 1px;
+    opacity: 0.3;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+
+.pixel:nth-child(3n) {
+    background-color: #F5CB40;
+    box-shadow: 0 0 10px rgba(245, 203, 64, 0.3);
+}
+
+.pixel:nth-child(3n+1) {
+    background-color: #B1B835;
+    box-shadow: 0 0 10px rgba(177, 184, 53, 0.3);
 }
 
 .hero .container {
@@ -290,19 +435,6 @@ header h1 {
     opacity: 0.6;
 }
 
-/* Elementos decorativos relacionados à programação */
-.hero-section::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f18805' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-    z-index: 0;
-}
-
 /* Código decorativo no background */
 .hero-section .code-elements {
     position: absolute;
@@ -364,16 +496,6 @@ header h1 {
     left: 0;
     z-index: 0;
     pointer-events: none;
-}
-
-.pixel {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #ff6b00;
-    border-radius: 1px;
-    opacity: 0.2;
-    z-index: 0;
 }
 
 .pixel:nth-child(1) { top: 20%; left: 20%; animation: float 8s ease-in-out infinite; }
@@ -593,5 +715,49 @@ header h1 {
     
     .scroll-text {
         font-size: 0.7rem;
+    }
+}
+
+/* Adicionar luzes de fundo que simulam brilho em jogos */
+.background-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.glow-1 {
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.8) 0%, rgba(255, 107, 0, 0) 70%);
+    top: 10%;
+    left: 15%;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.glow-2 {
+    background: radial-gradient(circle, rgba(245, 203, 64, 0.8) 0%, rgba(245, 203, 64, 0) 70%);
+    bottom: 15%;
+    right: 10%;
+    animation: pulse 12s ease-in-out infinite 2s;
+}
+
+.glow-3 {
+    background: radial-gradient(circle, rgba(177, 184, 53, 0.5) 0%, rgba(177, 184, 53, 0) 70%);
+    top: 60%;
+    left: 30%;
+    animation: pulse 10s ease-in-out infinite 4s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.15;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.25;
+        transform: scale(1.2);
     }
 } 
