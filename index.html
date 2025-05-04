@@ -36,7 +36,7 @@
     <div class="nav-spacer"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" style="padding: 50px 0; min-height: 90vh;">
         <!-- Elementos de brilho de fundo -->
         <div class="background-glow glow-1"></div>
         <div class="background-glow glow-2"></div>
@@ -87,31 +87,38 @@
             <div class="pixel"></div>
             <div class="pixel"></div>
             <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
         </div>
         
-        <div class="hero-content">
+        <div class="hero-content" style="gap: 20px;">
             <div class="hero-text">
-                <h1>Michelle Santiago</h1>
+                <h1 style="font-size: 2.8rem; margin-bottom: 12px; line-height: 1.1;">Michelle<br>Santiago</h1>
                 <div class="hero-subtitle">
-                    <span class="static-text">Game Developer</span>
+                    <span class="static-text" style="font-size: 1.5rem;">Game Developer</span>
                 </div>
-                <p class="hero-tagline">Transformando ideias em experiências interativas e criando mundos digitais que cativam e surpreendem.</p>
+                <p class="hero-tagline" style="max-width: 700px; margin-bottom: 25px; line-height: 1.5; font-size: 1.1rem;">Desenvolvedora com 7+ anos de experiência na criação de sistemas de gameplay que não apenas funcionam, mas inspiram e conectam. Minha missão é devolver à indústria as experiências transformadoras que me trouxeram até aqui.</p>
                 <div class="hero-cta">
-                    <a href="./assets/cv_michelle_santiago.pdf" download class="download-cv-btn"><i class="fas fa-download"></i> Download CV</a>
+                    <a href="./assets/cv_michelle_santiago.pdf" download class="download-cv-btn" style="font-size: 1.1rem; padding: 12px 25px;"><i class="fas fa-download"></i> Download CV</a>
                 </div>
             </div>
             
             <div class="hero-visual">
                 <div class="profile-frame">
-                    <img src="https://placehold.co/500x500/F5CB40/333333?text=Profile+Photo" alt="Michelle Santiago" class="profile-photo">
-                    <div class="profile-decoration"></div>
-                </div>
-                <div class="social-sidebar">
-                    <div class="social-connector"></div>
-                    <a href="https://github.com/seuusername" target="_blank" class="sidebar-icon"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/seulinkedin" target="_blank" class="sidebar-icon"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://twitter.com/seutwitter" target="_blank" class="sidebar-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="mailto:contato@michellesantiago.com" class="sidebar-icon"><i class="fas fa-envelope"></i></a>
+                    <img src="assets/images/Profile Picture.jpg" alt="Michelle Santiago" class="profile-photo" style="height: auto; width: 100%; max-width: 360px; border-radius: 10px;">
+                    <div class="profile-decoration" style="border-radius: 10px; width: calc(100% - 24px); height: calc(100% - 24px); top: 12px; left: 12px; max-width: 360px;"></div>
+                    <div class="social-sidebar" style="position: absolute; right: -45px; top: 50%; transform: translateY(-50%);">
+                        <div class="social-connector" style="width: 20px; height: 2px; background-color: var(--laranja-vivo);"></div>
+                        <a href="https://github.com/seuusername" target="_blank" class="sidebar-icon" style="font-size: 20px; height: 40px; width: 40px; margin: 8px 0;"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/seulinkedin" target="_blank" class="sidebar-icon" style="font-size: 20px; height: 40px; width: 40px; margin: 8px 0;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/seutwitter" target="_blank" class="sidebar-icon" style="font-size: 20px; height: 40px; width: 40px; margin: 8px 0;"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:michelle.santiago10@gmail.com" class="sidebar-icon" style="font-size: 20px; height: 40px; width: 40px; margin: 8px 0;"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,44 +136,47 @@
 
     <!-- Seção de Sobre Mim -->
     <section class="intro-section" id="sobre-mim">
-        <div class="section-container about-container">
-            <div class="about-left">
-                <div class="about-image-wrapper">
-                    <img src="https://placehold.co/400x500/F5CB40/333333?text=Profile+Photo" alt="Michelle Santiago" class="about-profile-image">
-                    <div class="image-decoration"></div>
+        <div class="section-container about-container" style="align-items: center;">
+            <div class="about-left" style="display: flex; flex-direction: column; justify-content: center; padding-top: 40px;">
+                <div class="about-image-wrapper" style="text-align: center; margin-bottom: 30px; position: relative;">
+                    <img src="assets/images/Game XP.jpeg" alt="Michelle Santiago apresentando palestra sobre diversidade na Game XP" class="about-profile-image" style="height: auto; width: 100%; max-width: 450px; border-radius: 10px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; z-index: 2;">
+                    <div class="image-decoration" style="border-radius: 10px; width: calc(100% - 16px); height: calc(100% - 16px); top: 8px; left: 8px; max-width: 450px; border: 4px solid #F05913; position: absolute; z-index: 1;"></div>
                 </div>
                 <div class="name-signature">
                     <h3>Michelle Santiago</h3>
                     <span class="title-accent">Desenvolvedora Unity & C#</span>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #777; max-width: 350px; text-align: center; margin-left: auto; margin-right: auto;">Apresentando minha palestra "Diversidade dentro da indústria de jogos" na Game XP.</p>
                 </div>
             </div>
             
-            <div class="about-right">
+            <div class="about-right" style="display: flex; flex-direction: column; justify-content: center;">
                 <div class="section-header">
                     <span class="section-tag">SOBRE MIM</span>
                     <h2>Especialista em <span class="highlight">Desenvolvimento de Jogos</span></h2>
                 </div>
                 
                 <div class="about-description">
-                    <p>Oi, eu sou Michelle, desenvolvedora de jogos com experiência em diversas plataformas e tecnologias. Sou uma profissional com foco em criar experiências imersivas e de alta qualidade.</p>
-                    <p>Meu objetivo é trabalhar com uma equipe criativa e inovadora, contribuindo para o desenvolvimento de jogos que impactem positivamente os jogadores. Busco sempre me aprimorar em tecnologias emergentes e oferecer soluções criativas para desafios no desenvolvimento de jogos.</p>
+                    <p>Sou uma engenheira de gameplay apaixonada pelo impacto que jogos podem ter na vida das pessoas. Minha jornada começou na Apple Developer Academy em 2016, onde dei meus primeiros passos em desenvolvimento, e desde então tenho construído experiências que buscam emocionar e engajar jogadores.</p>
+                    <p>Como programadora, busco equilibrar excelência técnica com design. Minha experiência abrange desde implementação de mecânicas até otimização de performance, sempre com foco na experiência final do jogador.</p>
+                    <p>Além do desenvolvimento, sou entusiasta da diversidade na indústria de games. Palestrei na Game XP sobre o tema e fui mentora na Woman Game Jam para inspirar mais mulheres a ingressarem na área.</p>
+                    <p>Quando não estou programando, provavelmente estou jogando para estudar mecânicas ou participando de game jams para expandir meus horizontes criativos.</p>
                 </div>
                 
                 <div class="personal-info">
                     <div class="info-row">
                         <div class="info-item">
                             <span class="info-label"><i class="fas fa-calendar"></i> Experiência:</span>
-                            <span class="info-value">5+ anos</span>
+                            <span class="info-value">7+ anos</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label"><i class="fas fa-map-marker-alt"></i> Localização:</span>
-                            <span class="info-value">São Paulo, Brasil</span>
+                            <span class="info-value">Rio de Janeiro, Brasil</span>
                         </div>
                     </div>
                     <div class="info-row">
                         <div class="info-item">
                             <span class="info-label"><i class="fas fa-envelope"></i> Email:</span>
-                            <span class="info-value">contato@michellesantiago.com</span>
+                            <span class="info-value">michelle.santiago10@gmail.com</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label"><i class="fas fa-briefcase"></i> Freelance:</span>
@@ -204,7 +214,7 @@
                             <div class="stat-circle"></div>
                         </div>
                     </div>
-                    <div class="stat-number count-up">5</div>
+                    <div class="stat-number count-up">7</div>
                     <div class="stat-label">Anos de Experiência</div>
                 </div>
                 <div class="stat-item">
@@ -578,6 +588,14 @@
                 <div class="particle pixel-particle"></div>
                 <div class="particle pixel-particle"></div>
                 <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
+                <div class="particle pixel-particle"></div>
             </div>
             
             <!-- Área de modal para exibir o jogo quando clicado -->
@@ -613,11 +631,11 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contato@michellesantiago.com</span>
+                            <span>michelle.santiago10@gmail.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>São Paulo, Brasil</span>
+                            <span>Rio de Janeiro, Brasil</span>
                         </div>
                     </div>
                     
@@ -661,7 +679,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Michelle Santiago - Todos os direitos reservados.</p>
+        <p>&copy; 2025 Este site foi criado com 💜 e muito código por Michelle Santiago</p>
     </footer>
     
     <!-- Botão voltar ao topo -->
